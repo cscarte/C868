@@ -1,12 +1,13 @@
-package com.example.c868;
+package com.example.C868;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.c868.R;
+
 public class MainActivity extends AppCompatActivity {
 
-    //testsss
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

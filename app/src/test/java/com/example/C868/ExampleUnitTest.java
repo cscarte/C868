@@ -1,4 +1,4 @@
-package com.example.c868;
+package com.example.C868;
 
 import org.junit.Test;
 
