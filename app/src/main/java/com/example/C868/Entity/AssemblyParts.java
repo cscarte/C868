@@ -9,4 +9,19 @@ public class AssemblyParts extends Parts {
         super(partID, partName, partDescription, partQty, partLocation, partPurchased);
         this.componentsIDList = componentsIDList;
     }
+
+    public List<Integer> getComponentsIDList() {
+        return componentsIDList;
+    }
+
+    public void setComponentsIDList(List<Integer> componentsIDList) {
+        this.componentsIDList = componentsIDList;
+    }
+
+    @Override
+    public String toString() {
+        return "AssemblyParts{" +
+                "componentsIDList=" + componentsIDList +
+                '}';
+    }
 }
