@@ -10,6 +10,8 @@ import androidx.room.Update;
 
 import com.example.C868.Entity.AssemblyParts;
 
+import java.util.List;
+
 @Dao
 public interface AssemblyPartsDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -20,4 +22,16 @@ public interface AssemblyPartsDAO {
 
     @Delete
     void delete(AssemblyParts assemblyParts);
+
+    @Query("SELECT * FROM assemblyParts ORDER BY partID ASC")
+    LiveData<List<AssemblyParts>> getAllAssemblyParts();
+
+    @Query("SELECT * FROM assemblyParts WHERE partID = :partID")
+    LiveData<List<AssemblyParts>> getAssemblyPartsByPartsID(int partID);
+
+    @Query("DELETE FROM assemblyParts")
+    int deleteAllAssemblyParts();
+
+    @Query("SELECT COUNT(*) FROM assemblyParts")
+    int getCountOfAssemblyParts();
 }
