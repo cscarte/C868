@@ -1,7 +1,9 @@
 package com.example.C868.Entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 
+@Entity(tableName = "purchasedComponents")
 public class PurchasedComponents extends Parts {
     private String purchasedPartVendor;
     private int purchasedPartLeadTimeDays;

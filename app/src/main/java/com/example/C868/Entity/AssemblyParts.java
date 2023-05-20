@@ -1,9 +1,11 @@
 package com.example.C868.Entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 
 import java.util.List;
 
+@Entity(tableName = "assemblyParts")
 public class AssemblyParts extends Parts {
     private List<Integer> componentsIDList;
 
