@@ -1,5 +1,7 @@
 package com.example.C868.Entity;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class AssemblyParts extends Parts {
@@ -18,6 +20,7 @@ public class AssemblyParts extends Parts {
         this.componentsIDList = componentsIDList;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "AssemblyParts{" +

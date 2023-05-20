@@ -1,5 +1,7 @@
 package com.example.C868.Entity;
 
+import androidx.annotation.NonNull;
+
 public class PurchasedComponents extends Parts {
     private String purchasedPartVendor;
     private int purchasedPartLeadTimeDays;
@@ -26,6 +28,7 @@ public class PurchasedComponents extends Parts {
         this.purchasedPartLeadTimeDays = purchasedPartLeadTimeDays;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PurchasedComponents{" +

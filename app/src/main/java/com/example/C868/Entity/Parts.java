@@ -1,6 +1,6 @@
 package com.example.C868.Entity;
 
-import androidx.room.Entity;
+import androidx.annotation.NonNull;
 import androidx.room.PrimaryKey;
 
 public class Parts {
@@ -69,6 +69,7 @@ public class Parts {
         this.partPurchased = partPurchased;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Parts{" +
