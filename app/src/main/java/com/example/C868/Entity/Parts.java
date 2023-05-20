@@ -1,8 +1,10 @@
 package com.example.C868.Entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+@Entity(tableName = "parts")
 public class Parts {
     @PrimaryKey(autoGenerate = true)
     private int partID;
