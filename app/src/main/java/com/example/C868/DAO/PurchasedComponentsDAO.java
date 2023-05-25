@@ -25,10 +25,10 @@ public interface PurchasedComponentsDAO {
     void delete(PurchasedComponents purchasedComponents);
 
     @Query("SELECT * FROM purchasedComponents ORDER BY partID ASC")
-    LiveData<List<PurchasedComponents>> getAllAssemblyParts();
+    LiveData<List<PurchasedComponents>> getAllPurchasedComponents();
 
     @Query("SELECT * FROM purchasedComponents WHERE partID = :partID")
-    LiveData<List<PurchasedComponents>> getAssemblyPartsByPartsID(int partID);
+    LiveData<List<PurchasedComponents>> getPurchasedComponentsByID(int partID);
 
     @Query("DELETE FROM purchasedComponents")
     int deleteAllAssemblyParts();
