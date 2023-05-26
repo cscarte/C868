@@ -24,10 +24,10 @@ public interface PartsDAO {
     void delete(Parts parts);
 
     @Query("SELECT * FROM parts ORDER BY partID ASC")
-    LiveData<List<Parts>> getAllParts();
+    List<Parts> getAllParts();
 
     @Query("SELECT * FROM parts WHERE partID = :partID")
-    LiveData<List<Parts>> getPartsByPartsID(int partID);
+    List<Parts> getPartsByPartsID(int partID);
 
     @Query("DELETE FROM parts")
     int deleteAllParts();

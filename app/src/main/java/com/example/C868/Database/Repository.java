@@ -14,17 +14,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Repository {
-    private static volatile Repository repository;
-
-    private PartsDAO mPartsDAO;
-    private AssemblyPartsDAO mAssemblyPartsDAO;
-    private PurchasedComponentsDAO mPurchasedComponentsDAO;
+    private final PartsDAO mPartsDAO;
+    private final AssemblyPartsDAO mAssemblyPartsDAO;
+    private final PurchasedComponentsDAO mPurchasedComponentsDAO;
 
     private List<Parts> mAllParts;
     private List<AssemblyParts> mAllAssemblyParts;
     private List<PurchasedComponents> mAllPurchasedComponents;
 
-    private static int NUMBER_OF_THREADS = 2;
+    private static final int NUMBER_OF_THREADS = 2;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public Repository(Application application) {
@@ -36,9 +34,7 @@ public class Repository {
     }
 
     public List<Parts> getmAllPart() {
-        databaseExecutor.execute(() -> {
-            mAllParts = (List<Parts>) mPartsDAO.getAllParts();
-        });
+        databaseExecutor.execute(() -> mAllParts = (List<Parts>) mPartsDAO.getAllParts());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -48,9 +44,8 @@ public class Repository {
     }
 
     public List<AssemblyParts> getmAllAssemblyParts() {
-        databaseExecutor.execute(() -> {
-            mAllAssemblyParts = (List<AssemblyParts>) mAssemblyPartsDAO.getAllAssemblyParts();
-        });
+        databaseExecutor.execute(() ->
+                mAllAssemblyParts = mAssemblyPartsDAO.getAllAssemblyParts());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -60,9 +55,7 @@ public class Repository {
     }
 
     public List<PurchasedComponents> getmAllPurchasedComponents() {
-        databaseExecutor.execute(() -> {
-            mAllPurchasedComponents = (List<PurchasedComponents>) mPurchasedComponentsDAO.getAllPurchasedComponents();
-        });
+        databaseExecutor.execute(() -> mAllPurchasedComponents = (List<PurchasedComponents>) mPurchasedComponentsDAO.getAllPurchasedComponents());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
