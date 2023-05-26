@@ -1,32 +1,21 @@
 package com.example.C868.Entity;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
-
-import java.util.List;
 
 @Entity(tableName = "assemblyParts")
 public class AssemblyParts extends Parts {
-    private List<Integer> componentsIDList;
+    private int assemblyID;
 
-    public AssemblyParts(int partID, String partName, String partDescription, int partQty, String partLocation, Boolean partPurchased, List<Integer> componentsIDList) {
+    public AssemblyParts(int partID, String partName, String partDescription, int partQty, String partLocation, Boolean partPurchased, int assemblyID) {
         super(partID, partName, partDescription, partQty, partLocation, partPurchased);
-        this.componentsIDList = componentsIDList;
+        this.assemblyID = assemblyID;
     }
 
-    public List<Integer> getComponentsIDList() {
-        return componentsIDList;
+    public int getAssemblyID() {
+        return assemblyID;
     }
 
-    public void setComponentsIDList(List<Integer> componentsIDList) {
-        this.componentsIDList = componentsIDList;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "AssemblyParts{" +
-                "componentsIDList=" + componentsIDList +
-                '}';
+    public void setAssemblyID(int assemblyID) {
+        this.assemblyID = assemblyID;
     }
 }

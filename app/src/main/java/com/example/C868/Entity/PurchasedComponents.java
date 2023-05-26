@@ -8,10 +8,13 @@ public class PurchasedComponents extends Parts {
     private String purchasedPartVendor;
     private int purchasedPartLeadTimeDays;
 
-    public PurchasedComponents(int partID, String partName, String partDescription, int partQty, String partLocation, Boolean partPurchased, String purchasedPartVendor, int purchasedPartLeadTimeDays) {
+    private int purchasedPartAssemblyID;
+
+    public PurchasedComponents(int partID, String partName, String partDescription, int partQty, String partLocation, Boolean partPurchased, String purchasedPartVendor, int purchasedPartLeadTimeDays, int purchasedPartAssemblyID) {
         super(partID, partName, partDescription, partQty, partLocation, partPurchased);
         this.purchasedPartVendor = purchasedPartVendor;
         this.purchasedPartLeadTimeDays = purchasedPartLeadTimeDays;
+        this.purchasedPartAssemblyID = purchasedPartAssemblyID;
     }
 
     public String getPurchasedPartVendor() {
@@ -28,6 +31,14 @@ public class PurchasedComponents extends Parts {
 
     public void setPurchasedPartLeadTimeDays(int purchasedPartLeadTimeDays) {
         this.purchasedPartLeadTimeDays = purchasedPartLeadTimeDays;
+    }
+
+    public int getPurchasedPartAssemblyID() {
+        return purchasedPartAssemblyID;
+    }
+
+    public void setPurchasedPartAssemblyID(int purchasedPartAssemblyID) {
+        this.purchasedPartAssemblyID = purchasedPartAssemblyID;
     }
 
     @NonNull

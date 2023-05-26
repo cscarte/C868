@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "parts")
 public class Parts {
+    //Generate default values for parts attributes for Assembly parts and Purchased components
     @PrimaryKey(autoGenerate = true)
     private int partID;
     private String partName;

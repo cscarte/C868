@@ -14,43 +14,36 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Repository {
-    private static volatile Repository repository;
 
-    private PartsDAO mPartsDAO;
-    private AssemblyPartsDAO mAssemblyPartsDAO;
-    private PurchasedComponentsDAO mPurchasedComponentsDAO;
-
-    private List<Parts> mAllParts;
+    private final AssemblyPartsDAO mAssemblyPartsDAO;
+    private final PurchasedComponentsDAO mPurchasedComponentsDAO;
     private List<AssemblyParts> mAllAssemblyParts;
     private List<PurchasedComponents> mAllPurchasedComponents;
 
-    private static int NUMBER_OF_THREADS = 2;
+    private static final int NUMBER_OF_THREADS = 2;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public Repository(Application application) {
         MRPDatabase database = MRPDatabase.getDatabase(application);
 
-        mPartsDAO = database.partsDAO();
         mAssemblyPartsDAO = database.assemblyPartsDAO();
         mPurchasedComponentsDAO = database.purchasedComponentsDAO();
     }
 
+    /**
     public List<Parts> getmAllPart() {
-        databaseExecutor.execute(() -> {
-            mAllParts = (List<Parts>) mPartsDAO.getAllParts();
-        });
+        databaseExecutor.execute(() -> mAllParts = (List<Parts>) mPartsDAO.getAllParts());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return mAllParts;
-    }
+    }*/
 
     public List<AssemblyParts> getmAllAssemblyParts() {
-        databaseExecutor.execute(() -> {
-            mAllAssemblyParts = (List<AssemblyParts>) mAssemblyPartsDAO.getAllAssemblyParts();
-        });
+        databaseExecutor.execute(() ->
+                mAllAssemblyParts = mAssemblyPartsDAO.getAllAssemblyParts());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -60,9 +53,7 @@ public class Repository {
     }
 
     public List<PurchasedComponents> getmAllPurchasedComponents() {
-        databaseExecutor.execute(() -> {
-            mAllPurchasedComponents = (List<PurchasedComponents>) mPurchasedComponentsDAO.getAllPurchasedComponents();
-        });
+        databaseExecutor.execute(() -> mAllPurchasedComponents = (List<PurchasedComponents>) mPurchasedComponentsDAO.getAllPurchasedComponents());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -71,7 +62,7 @@ public class Repository {
         return mAllPurchasedComponents;
     }
 
-    public void insert(Parts parts) {
+    /**public void insert(Parts parts) {
         databaseExecutor.execute(() -> {
             mPartsDAO.insert(parts);
             try {
@@ -80,9 +71,10 @@ public class Repository {
                 e.printStackTrace();
             }
         });
-    }
+    }*/
 
-    public void update(Parts parts) {
+
+    /**public void update(Parts parts) {
         databaseExecutor.execute(() -> {
             mPartsDAO.update(parts);
             try {
@@ -91,9 +83,9 @@ public class Repository {
                 e.printStackTrace();
             }
         });
-    }
+    }*/
 
-    public void delete(Parts parts) {
+    /**public void delete(Parts parts) {
         databaseExecutor.execute(() -> {
             mPartsDAO.delete(parts);
             try {
@@ -102,7 +94,7 @@ public class Repository {
                 e.printStackTrace();
             }
         });
-    }
+    }*/
 
     public void insert(AssemblyParts assemblyParts) {
         databaseExecutor.execute(() -> {
