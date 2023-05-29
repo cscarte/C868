@@ -10,13 +10,88 @@
         android:layout_width="match_parent">
 
         <TextView
-            android:id="@+id/textViewPurchasedComponentPrice"
+            android:id="@+id/textViewPurchasedComponentLeadTime"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="525dp"
+            android:gravity="center_vertical"
+            android:text="Lead Time Days"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextViewPurchasedComponentVendor2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="425dp"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:text="Vendor"
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentDescription"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPurchasedComponentVendor"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="425dp"
+            android:gravity="center_vertical"
+            android:text="Vendor"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextViewPurchasedComponentLeadTime"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="525dp"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:text="Lead Time"
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentDescription"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPurchasedComponentLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="325dp"
+            android:gravity="center_vertical"
+            android:text="Location"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextViewPurchasedComponentLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="325dp"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:text="Location"
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentDescription"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPurchasedComponentQty"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="225dp"
             android:gravity="center_vertical"
-            android:text="Price"
+            android:text="Quantity"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +122,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextViewPurchasedComponentPrice"
+            android:id="@+id/editTextViewPurchasedComponentQuantity"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
@@ -55,7 +130,7 @@
             android:ems="10"
             android:gravity="center_vertical"
             android:inputType="text"
-            android:text="Price"
+            android:text="Quantity"
             app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentDescription"
             app:layout_constraintTop_toTopOf="parent" />
 
