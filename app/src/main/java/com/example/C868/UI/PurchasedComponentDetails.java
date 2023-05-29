@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,15 +16,22 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
     EditText purchasedComponentDescription;
     EditText purchasedComponentPrice;
     EditText purchasedComponentQuantity;
+
+    EditText purchasedComponentLocation;
     EditText purchasedComponentVendor;
-    EditText purchasedComponentVendorPhone;
+    EditText purchasedComponentLeadTime;
+
+    Spinner assemblyIDSpinner;
 
     String name;
     String description;
     String price;
     String quantity;
+    String location;
     String vendor;
-    String vendorPhone;
+    String leadTime;
+
+    int assemblyID;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +57,27 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         quantity = getIntent().getStringExtra("partQuantity");
         purchasedComponentQuantity.setText(quantity);
 
+        //Get purchased component part location from clicked item in list on the PurchasedComponentList.java screen
+        purchasedComponentLocation = findViewById(R.id.editTextViewPurchasedComponentLocation);
+        location = getIntent().getStringExtra("partLocation");
+        purchasedComponentLocation.setText(location);
+
         //Get purchased component part vendor from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentVendor = findViewById(R.id.editTextViewPurchasedComponentLeadTime);
         vendor = getIntent().getStringExtra("partVendor");
         purchasedComponentVendor.setText(vendor);
+
+        //Get purchased component part lead time from clicked item in list on the PurchasedComponentList.java screen
+        purchasedComponentLeadTime = findViewById(R.id.editTextViewPurchasedComponentLeadTime);
+        leadTime = String.valueOf(getIntent().getIntExtra("partLeadTime", 0));
+        purchasedComponentLeadTime.setText(leadTime);
+
+        //Get purchased component part assembly ID from clicked item in list on the PurchasedComponentList.java screen
+        assemblyIDSpinner = findViewById(R.id.purchasedComponentAssemblyID);
+        assemblyID = getIntent().getIntExtra("partAssemblyID", 0);
+        assemblyIDSpinner.setSelection(assemblyID);
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
