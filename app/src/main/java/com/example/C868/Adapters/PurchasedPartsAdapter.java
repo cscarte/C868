@@ -34,31 +34,37 @@ public class PurchasedPartsAdapter extends RecyclerView.Adapter<PurchasedPartsAd
     @NonNull
     @Override
     public PartsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.activity_purchased_components_row, parent, false);
+        View view = mInflater.inflate(R.layout.row_purchased_components, parent, false);
         return new PartsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PartsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PurchasedPartsAdapter.PartsViewHolder holder, int position) {
+        if (purchasedComponentsList != null) {
+            PurchasedComponents current = purchasedComponentsList.get(position);
+            String name = current.getPartName();
+            holder.partsItemView.setText(name);
+        } else {
+            holder.partsItemView.setText("No Parts");
+        }
     }
 
     @Override
     public int getItemCount() {
         if (purchasedComponentsList != null) {
-            purchasedComponentsList.addAll(purchasedComponentsList);
-            System.out.println("There are " + purchasedComponentsList.size() + " parts in the system");
             return purchasedComponentsList.size();
         } else return 0;
     }
 
     public void setPartsList(List<PurchasedComponents> partsList) {
-        partsList.addAll(purchasedComponentsList);
+        purchasedComponentsList = partsList;
+        notifyDataSetChanged();
     }
 
     class PartsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView partsItemView;
 
-        public PartsViewHolder(View view) {
+        private PartsViewHolder(View view) {
             super(view);
             partsItemView = itemView.findViewById(R.id.partDetailsTextView);
             partsItemView.setOnClickListener(v -> {
@@ -66,16 +72,17 @@ public class PurchasedPartsAdapter extends RecyclerView.Adapter<PurchasedPartsAd
                 if (clickEnabled) {
                     clickEnabled = false;
                     int position = getAdapterPosition();
+                    final PurchasedComponents current = purchasedComponentsList.get(position);
                     Intent intent = new Intent(context, PurchasedComponentDetails.class);
-                    intent.putExtra("partID", purchasedComponentsList.get(position).getPartID());
-                    intent.putExtra("partName", purchasedComponentsList.get(position).getPartName());
-                    intent.putExtra("partDescription", purchasedComponentsList.get(position).getPartDescription());
-                    intent.putExtra("partQty", purchasedComponentsList.get(position).getPartQty());
-                    intent.putExtra("partLocation", purchasedComponentsList.get(position).getPartLocation());
-                    intent.putExtra("partPurchased", purchasedComponentsList.get(position).getPartPurchased());
-                    intent.putExtra("purchasedPartVendor", purchasedComponentsList.get(position).getPurchasedPartVendor());
-                    intent.putExtra("purchasedPartLeadTime", purchasedComponentsList.get(position).getPurchasedPartLeadTimeDays());
-                    intent.putExtra("purchasedPartAssemblyID", purchasedComponentsList.get(position).getPurchasedPartAssemblyID());
+                    intent.putExtra("partID", current.getPartID());
+                    intent.putExtra("partName", current.getPartName());
+                    intent.putExtra("partDescription", current.getPartDescription());
+                    intent.putExtra("partQty", current.getPartQty());
+                    intent.putExtra("partLocation", current.getPartLocation());
+                    intent.putExtra("partPurchased", current.getPartPurchased());
+                    intent.putExtra("purchasedPartVendor", current.getPurchasedPartVendor());
+                    intent.putExtra("purchasedPartLeadTime", current.getPurchasedPartLeadTimeDays());
+                    intent.putExtra("purchasedPartAssemblyID", current.getPurchasedPartAssemblyID());
                     context.startActivity(intent);
                 }
             });
