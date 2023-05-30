@@ -39,23 +39,17 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
     EditText purchasedComponentVendor;
     EditText purchasedComponentLeadTime;
 
-    Spinner assemblyIDSpinner;
-
     Repository repository = new Repository(getApplication());
 
-    List<AssemblyParts> assemblyPartsList = repository.getmAllAssemblyParts();
-    ArrayList<AssemblyParts> assemblyPartsArrayList = new ArrayList<>();
-
-    PurchasedComponentsDAO purchasedComponentsDAO;
+    PurchasedComponents purchasedComponents;
 
     int purchasedComponentID;
     String name;
     String description;
-    String price;
-    String quantity;
+    int quantity;
     String location;
     String vendor;
-    String leadTime;
+    int leadTime;
 
     int assemblyID;
 
@@ -67,7 +61,6 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         setSupportActionBar(toolbar);
 
         purchasedComponentID = getIntent().getIntExtra("partID", 0);
-        int partid = purchasedComponentID;
 
         //Get purchased component part name from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentName = findViewById(R.id.editTextViewPurchasedComponentName);
@@ -75,19 +68,14 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         purchasedComponentName.setText(name);
 
         //Get purchased component part description from clicked item in list on the PurchasedComponentList.java screen
-        purchasedComponentDescription = findViewById(R.id.editTextViewPurchasedComponentQuantity);
+        purchasedComponentDescription = findViewById(R.id.editTextViewPurchasedComponentDescription2);
         description = getIntent().getStringExtra("partDescription");
         purchasedComponentDescription.setText(description);
 
-        //Get purchased component part price from clicked item in list on the PurchasedComponentList.java screen
-        purchasedComponentPrice = findViewById(R.id.editTextViewPurchasedComponentQuantity);
-        price = getIntent().getStringExtra("partPrice");
-        purchasedComponentPrice.setText(price);
-
         //Get purchased component part quantity from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentQuantity = findViewById(R.id.editTextViewPurchasedComponentQuantity);
-        quantity = getIntent().getStringExtra("partQuantity");
-        purchasedComponentQuantity.setText(quantity);
+        quantity = getIntent().getIntExtra("partQty", 0);
+        purchasedComponentQuantity.setText(String.valueOf(quantity));
 
         //Get purchased component part location from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentLocation = findViewById(R.id.editTextViewPurchasedComponentLocation);
@@ -95,38 +83,16 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         purchasedComponentLocation.setText(location);
 
         //Get purchased component part vendor from clicked item in list on the PurchasedComponentList.java screen
-        purchasedComponentVendor = findViewById(R.id.editTextViewPurchasedComponentLeadTime);
+        purchasedComponentVendor = findViewById(R.id.editTextViewPurchasedComponentVendor2);
         vendor = getIntent().getStringExtra("partVendor");
         purchasedComponentVendor.setText(vendor);
 
         //Get purchased component part lead time from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentLeadTime = findViewById(R.id.editTextViewPurchasedComponentLeadTime);
-        leadTime = String.valueOf(getIntent().getIntExtra("partLeadTime", 0));
-        purchasedComponentLeadTime.setText(leadTime);
+        leadTime = getIntent().getIntExtra("partLeadTime", 0);
+        purchasedComponentLeadTime.setText(String.valueOf(leadTime));
 
-        //Get purchased component part assembly ID from clicked item in list on the PurchasedComponentList.java screen
-        assemblyIDSpinner = findViewById(R.id.purchasedComponentAssemblyIDSpinner);
-        assemblyID = getIntent().getIntExtra("partAssemblyID", 0);
-        assemblyIDSpinner.setSelection(assemblyID);
-
-        //Set spinner to display assembly ID
-        assemblyPartsArrayList.addAll(assemblyPartsList);
-        final ArrayAdapter<AssemblyParts> purchasedComponentsArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assemblyPartsArrayList);
-        purchasedComponentsArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        assemblyIDSpinner.setAdapter(purchasedComponentsArrayAdapter);
-
-        assemblyIDSpinner.setOnItemSelectedListener(this);
-        assemblyIDSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                assemblyID = assemblyPartsArrayList.get(position).getAssemblyID();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        assemblyID = getIntent().getIntExtra("purchasedPartAssemblyID", 0);
     }
 
     @Override
@@ -170,28 +136,45 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                             toast.show();
 
                             int purchasedComponentPosition = getIntent().getIntExtra("position", 0);
-                            int purchasedComponentListSize = getIntent().getIntExtra("count", 0);
-                            purchasedComponentListSize = purchasedComponentListSize - 1;
                             PurchasedComponentList.adapter.notifyItemRemoved(purchasedComponentPosition);
                             PurchasedComponentList.adapter.deleteItem(purchasedComponentPosition);
                             PurchasedComponentList.adapter.setPartsList(repository.getmAllPurchasedComponents());
                             finish();
                         }
                     }
-                }});
+                }
+            });
             alert.setNegativeButton("no", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Purchased Component not deleted", Toast.LENGTH_LONG);
                     toast.show();
-                }});
+                }
+            });
             alert.show();
+        } else if (id == R.id.menuSavePurchasedPart) {
+            if (repository.getmAllAssemblyParts().size() == 0) {
+                if (purchasedComponentID == -1) {
+                    purchasedComponents = new PurchasedComponents(0, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID = 0);
+                    repository.insert(purchasedComponents);
+                } else {
+                    purchasedComponents = new PurchasedComponents(purchasedComponentID, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID = 0);
+                    repository.update(purchasedComponents);
+                }
+            } else {
+                if (purchasedComponentID == -1) {
+                    purchasedComponents = new PurchasedComponents(0, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID);
+                    repository.insert(purchasedComponents);
+                } else {
+                    purchasedComponents = new PurchasedComponents(purchasedComponentID, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID);
+                    repository.update(purchasedComponents);
+                }
             }
-        return true;
-    }
 
-    public void onBackPressed() {
-        super.onBackPressed();
-        PurchasedPartsAdapter.clickEnabled = true;
+            System.out.println("Purchased Component ID: " + purchasedComponentID);
+            Toast toast = Toast.makeText(getApplicationContext(), "Purchased Component saved", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        return true;
     }
 }

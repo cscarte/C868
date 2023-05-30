@@ -21,18 +21,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewPurchasedComponentAssembly"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="50dp"
-            android:gravity="center_vertical"
-            android:text="Assembly"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPurchasedComponentLeadTime" />
-
-        <TextView
             android:id="@+id/textViewPurchasedComponentLeadTime"
             android:layout_width="100dp"
             android:layout_height="50dp"
@@ -77,7 +65,7 @@
             android:layout_marginTop="50dp"
             android:ems="10"
             android:gravity="center_vertical"
-            android:inputType="text"
+            android:inputType="number"
             android:text="Lead Time"
             app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentLeadTime"
             app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedComponentVendor2" />
@@ -152,7 +140,7 @@
             android:layout_marginTop="50dp"
             android:ems="10"
             android:gravity="center_vertical"
-            android:inputType="text"
+            android:inputType="number"
             android:text="Quantity"
             app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentQty"
             app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedComponentDescription2" />
@@ -182,15 +170,6 @@
             app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentName"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/purchasedComponentAssemblyIDSpinner"
-            android:layout_width="210dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="48dp"
-            android:padding="10dp"
-            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedComponentAssembly"
-            app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedComponentLeadTime" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
