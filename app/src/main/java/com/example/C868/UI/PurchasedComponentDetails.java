@@ -169,8 +169,12 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                             Toast toast = Toast.makeText(getApplicationContext(), selectedPurchasedPart.getPartName() + " deleted", Toast.LENGTH_SHORT);
                             toast.show();
 
-                            PurchasedComponentList.adapter.notifyItemRemoved(purchasedComponentID);
-                            PurchasedComponentList.purchasedComponentsList.remove(purchasedComponentID);
+                            int purchasedComponentPosition = getIntent().getIntExtra("position", 0);
+                            int purchasedComponentListSize = getIntent().getIntExtra("count", 0);
+                            purchasedComponentListSize = purchasedComponentListSize - 1;
+                            PurchasedComponentList.adapter.notifyItemRemoved(purchasedComponentPosition);
+                            PurchasedComponentList.adapter.deleteItem(purchasedComponentPosition);
+                            PurchasedComponentList.adapter.setPartsList(repository.getmAllPurchasedComponents());
                             finish();
                         }
                     }

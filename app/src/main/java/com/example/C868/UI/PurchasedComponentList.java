@@ -41,8 +41,9 @@ public class PurchasedComponentList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    public void onFinish() {
-        finish();
+    public void onResume() {
+        super.onResume();
+        PurchasedPartsAdapter.clickEnabled = true;
     }
 
     public void onBackPressed() {

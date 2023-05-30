@@ -26,8 +26,6 @@ public class PurchasedPartsAdapter extends RecyclerView.Adapter<PurchasedPartsAd
     private static final long clickTimeInterval = 300;
     public static boolean clickEnabled = true;
 
-    private static int position;
-
     public PurchasedPartsAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
@@ -79,8 +77,11 @@ public class PurchasedPartsAdapter extends RecyclerView.Adapter<PurchasedPartsAd
                 if (clickEnabled) {
                     clickEnabled = false;
                     int position = getAdapterPosition();
+                    int count = getItemCount();
                     final PurchasedComponents current = purchasedComponentsList.get(position);
                     Intent intent = new Intent(context, PurchasedComponentDetails.class);
+                    intent.putExtra("position", position);
+                    intent.putExtra("count", count);
                     intent.putExtra("partID", current.getPartID());
                     intent.putExtra("partName", current.getPartName());
                     intent.putExtra("partDescription", current.getPartDescription());
