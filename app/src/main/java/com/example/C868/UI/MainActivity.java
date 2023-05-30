@@ -1,11 +1,14 @@
 package com.example.C868.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.C868.Database.Repository;
 import com.example.C868.Entity.AssemblyParts;
@@ -23,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
 
     AssemblyParts assemblyParts;
 
+    Menu menu;
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_test, menu);
+        return true;
+    }
+
+    @SuppressLint({"ResourceType", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         assemblyPartsList = repository.getmAllAssemblyParts();
         purchasedComponentsList = repository.getmAllPurchasedComponents();
 
+        Toolbar toolbar = findViewById(R.id.menuToolbar);
+        setSupportActionBar(toolbar);
 
         if (assemblyPartsList.size() < 1) {
             assemblyParts = new AssemblyParts(1, "Assembly Part 1", "Assembly Part 1 Description", 1, "Assembly Part 1 Location", false, 1);
@@ -75,8 +89,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
-        return true;
-    }
+
 }

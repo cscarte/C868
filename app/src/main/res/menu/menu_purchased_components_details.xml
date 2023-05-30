@@ -6,10 +6,12 @@
         android:id="@+id/menuSavePurchasedPart"
         android:icon="@drawable/baseline_save_24"
         android:title="Save"
+        android:visible="true"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuDeletePurchasedPart"
         android:icon="@drawable/baseline_delete_24"
         android:title="Delete"
+        android:visible="true"
         app:showAsAction="ifRoom" />
 </menu>

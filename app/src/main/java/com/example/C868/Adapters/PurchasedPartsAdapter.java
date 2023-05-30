@@ -26,6 +26,8 @@ public class PurchasedPartsAdapter extends RecyclerView.Adapter<PurchasedPartsAd
     private static final long clickTimeInterval = 300;
     public static boolean clickEnabled = true;
 
+    private static int position;
+
     public PurchasedPartsAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
@@ -59,6 +61,11 @@ public class PurchasedPartsAdapter extends RecyclerView.Adapter<PurchasedPartsAd
     public void setPartsList(List<PurchasedComponents> partsList) {
         purchasedComponentsList = partsList;
         notifyDataSetChanged();
+    }
+
+    public void deleteItem(int position) {
+        purchasedComponentsList.remove(position);
+        notifyItemRemoved(position);
     }
 
     class PartsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

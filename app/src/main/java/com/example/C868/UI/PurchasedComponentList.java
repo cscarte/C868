@@ -1,6 +1,8 @@
 package com.example.C868.UI;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import com.example.c868.R;
 import java.util.List;
 
 public class PurchasedComponentList extends AppCompatActivity {
+    public static int adapterPosition;
     static RecyclerView recyclerView;
     static PurchasedPartsAdapter adapter;
     static List<PurchasedComponents> purchasedComponentsList;
@@ -38,8 +41,12 @@ public class PurchasedComponentList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    protected void onResume() {
-        super.onResume();
+    public void onFinish() {
+        finish();
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
         PurchasedPartsAdapter.clickEnabled = true;
     }
 }

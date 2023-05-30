@@ -35,4 +35,7 @@ public interface PurchasedComponentsDAO {
 
     @Query("SELECT COUNT(*) FROM purchasedComponents")
     int getCountOfAssemblyParts();
+
+    @Query("DELETE FROM purchasedComponents WHERE partID = :partID")
+    int deletePurchasedComponentsByID(int partID);
 }
