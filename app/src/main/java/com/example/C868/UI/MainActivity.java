@@ -33,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
         purchasedComponentsList = repository.getmAllPurchasedComponents();
 
 
-
         if (assemblyPartsList.size() < 1) {
             assemblyParts = new AssemblyParts(1, "Assembly Part 1", "Assembly Part 1 Description", 1, "Assembly Part 1 Location", false, 1);
+            repository.insert(assemblyParts);
+            assemblyParts = new AssemblyParts(2, "Assembly Part 2", "Assembly Part 2 Description", 1, "Assembly Part 2 Location", false, 1);
+            repository.insert(assemblyParts);
+            assemblyParts = new AssemblyParts(3, "Assembly Part 3", "Assembly Part 3 Description", 1, "Assembly Part 3 Location", false, 1);
             repository.insert(assemblyParts);
         }
 

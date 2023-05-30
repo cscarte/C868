@@ -75,13 +75,6 @@ public class Parts {
     @NonNull
     @Override
     public String toString() {
-        return "Parts{" +
-                "partID=" + partID +
-                ", partName='" + partName + '\'' +
-                ", partDescription='" + partDescription + '\'' +
-                ", partQty=" + partQty +
-                ", partLocation='" + partLocation + '\'' +
-                ", partPurchased=" + partPurchased +
-                '}';
+        return partName;
     }
 }

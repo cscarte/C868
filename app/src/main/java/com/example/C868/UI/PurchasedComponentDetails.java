@@ -3,12 +3,20 @@ package com.example.C868.UI;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.C868.Database.Repository;
+import com.example.C868.Entity.AssemblyParts;
+import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PurchasedComponentDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -22,6 +30,11 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
     EditText purchasedComponentLeadTime;
 
     Spinner assemblyIDSpinner;
+
+    Repository repository = new Repository(getApplication());
+
+    List<AssemblyParts> assemblyPartsList = repository.getmAllAssemblyParts();
+    ArrayList<AssemblyParts> assemblyPartsArrayList = new ArrayList<>();
 
     String name;
     String description;
@@ -73,9 +86,28 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         purchasedComponentLeadTime.setText(leadTime);
 
         //Get purchased component part assembly ID from clicked item in list on the PurchasedComponentList.java screen
-        assemblyIDSpinner = findViewById(R.id.purchasedComponentAssemblyID);
+        assemblyIDSpinner = findViewById(R.id.purchasedComponentAssemblyIDSpinner);
         assemblyID = getIntent().getIntExtra("partAssemblyID", 0);
         assemblyIDSpinner.setSelection(assemblyID);
+
+        //Set spinner to display assembly ID
+        assemblyPartsArrayList.addAll(assemblyPartsList);
+        final ArrayAdapter<AssemblyParts> purchasedComponentsArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assemblyPartsArrayList);
+        purchasedComponentsArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        assemblyIDSpinner.setAdapter(purchasedComponentsArrayAdapter);
+
+        assemblyIDSpinner.setOnItemSelectedListener(this);
+        assemblyIDSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                assemblyID = assemblyPartsArrayList.get(position).getAssemblyID();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override

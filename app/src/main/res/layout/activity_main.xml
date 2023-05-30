@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="43dp"
         android:layout_marginEnd="150dp"
-        android:layout_marginBottom="450dp"
+        android:layout_marginBottom="580dp"
         android:background="#000000"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,14 +25,26 @@
     <Button
         android:id="@+id/purchasedPartsListButton"
         android:layout_width="205dp"
-        android:layout_height="69dp"
+        android:layout_height="75dp"
         android:layout_marginStart="103dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="103dp"
         android:onClick="enterPurchasedComponentsScreen"
-        android:text="Purchased Parts"
+        android:text="Set Up Purchased Parts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/assemblyPartsListButton"
+        android:layout_width="205dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="160dp"
+        android:text="Set Up Assembly Parts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/purchasedPartsListButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
