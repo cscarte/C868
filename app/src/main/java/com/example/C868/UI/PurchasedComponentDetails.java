@@ -128,6 +128,7 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                             int purchasedComponentPosition = getIntent().getIntExtra("position", 0);
                             PurchasedComponentList.adapter.notifyItemRemoved(purchasedComponentPosition);
                             PurchasedComponentList.adapter.deleteItem(purchasedComponentPosition);
+                            PurchasedComponentList.adapter.notifyItemRangeChanged(purchasedComponentPosition, PurchasedComponentList.adapter.getItemCount());
                             PurchasedComponentList.adapter.setPartsList(repository.getmAllPurchasedComponents());
                             finish();
                         }
@@ -159,7 +160,7 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
             } else {
 
                 if (repository.getmAllAssemblyParts().size() == 0) {
-                    if (purchasedComponentID == -1) {
+                    if (purchasedComponentID == 0) {
                         purchasedComponents = new PurchasedComponents(0, name, description, quantity, location, true, vendor, leadTime, assemblyID = 0);
                         repository.insert(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
@@ -173,7 +174,7 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                         finish();
                     }
                 } else {
-                    if (purchasedComponentID == -1) {
+                    if (purchasedComponentID == 0) {
                         purchasedComponents = new PurchasedComponents(0, name, description, quantity, location, true, vendor, leadTime, assemblyID);
                         repository.insert(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);

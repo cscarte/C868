@@ -1,9 +1,12 @@
 package com.example.C868.UI;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -61,5 +64,10 @@ public class PurchasedComponentList extends AppCompatActivity {
         inflater.inflate(R.menu.menu_purchased_components_list, menu);
         super.onCreateOptionsMenu(menu);
         return true;
+    }
+
+    public void enterAddPurchasedComponent(MenuItem item) {
+        Intent intent = new Intent(PurchasedComponentList.this, PurchasedComponentDetails.class);
+        startActivity(intent);
     }
 }
