@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enterAssemblyPartsScreen(View view) {
-        Intent intent = new Intent(MainActivity.this, AssemblyParts.class);
+        Intent intent = new Intent(MainActivity.this, AssemblyPartsList.class);
         startActivity(intent);
     }
 

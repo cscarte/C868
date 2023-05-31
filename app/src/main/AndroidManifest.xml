@@ -26,6 +26,8 @@
         </activity>
         <activity android:name="com.example.C868.UI.PurchasedComponentDetails"
             android:exported="true"/>
+        <activity android:name="com.example.C868.UI.AssemblyPartsList"
+            android:exported="true"/>
     </application>
 
 </manifest>

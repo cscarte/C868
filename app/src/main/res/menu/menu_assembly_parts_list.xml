@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menuAddPurchasedPart"
-        android:contentDescription="Add Purchased Part"
-        android:onClick="enterAddPurchasedComponent"
-        android:title="Add Purchased Part"
+        android:id="@+id/menuAddAssemblyPart"
+        android:contentDescription="Add Assembly Part"
+        android:onClick="enterAddAssemblyPart"
+        android:title="Add Assembly Part"
         android:visible="true"
         app:showAsAction="ifRoom" />
 </menu>

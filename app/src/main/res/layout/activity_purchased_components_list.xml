@@ -11,13 +11,13 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarPurchasedComponentList"
+            android:id="@+id/toolbarPartsLIst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/material_dynamic_tertiary90"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewPurchasedParts"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewAssemblyParts"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPurchasedParts"
+            android:id="@+id/recyclerViewAssemblyParts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/material_dynamic_neutral_variant30"
@@ -34,6 +34,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarPurchasedComponentList" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarPartsLIst" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
