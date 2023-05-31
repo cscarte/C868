@@ -26,8 +26,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewComponentParts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="700dp"
             android:background="@color/material_dynamic_neutral_variant30"
             android:onClick="enterPurchasedComponentsScreen"
             app:layout_constraintBottom_toBottomOf="parent"
