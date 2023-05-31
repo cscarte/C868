@@ -1,10 +1,12 @@
 package com.example.C868.UI;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +18,6 @@ import com.example.c868.R;
 import java.util.List;
 
 public class PurchasedComponentList extends AppCompatActivity {
-    public static int adapterPosition;
     static RecyclerView recyclerView;
     static PurchasedPartsAdapter adapter;
     static List<PurchasedComponents> purchasedComponentsList;
@@ -26,6 +27,9 @@ public class PurchasedComponentList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchased_components_list);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Toolbar toolbar = findViewById(R.id.toolbarPurchasedComponentList);
+        setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recyclerViewPurchasedParts);
         repository = new Repository(getApplication());
@@ -49,5 +53,13 @@ public class PurchasedComponentList extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         PurchasedPartsAdapter.clickEnabled = true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_purchased_components_list, menu);
+        super.onCreateOptionsMenu(menu);
+        return true;
     }
 }

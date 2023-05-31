@@ -28,12 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     Menu menu;
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_test, menu);
-        return true;
-    }
-
     @SuppressLint({"ResourceType", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {

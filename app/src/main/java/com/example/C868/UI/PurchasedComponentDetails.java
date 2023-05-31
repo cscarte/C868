@@ -9,30 +9,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.C868.Adapters.PurchasedPartsAdapter;
-import com.example.C868.DAO.PurchasedComponentsDAO;
 import com.example.C868.Database.Repository;
-import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PurchasedComponentDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText purchasedComponentName;
     EditText purchasedComponentDescription;
-    EditText purchasedComponentPrice;
     EditText purchasedComponentQuantity;
 
     EditText purchasedComponentLocation;
