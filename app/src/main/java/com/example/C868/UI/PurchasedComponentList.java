@@ -33,7 +33,7 @@ public class PurchasedComponentList extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Toolbar toolbar = findViewById(R.id.toolbarPartsLIst);
         setSupportActionBar(toolbar);
 
-        recyclerView = findViewById(R.id.recyclerViewAssemblyParts);
+        recyclerView = findViewById(R.id.recyclerViewComponentParts);
         repository = new Repository(getApplication());
 
         purchasedComponentsList = repository.getmAllPurchasedComponents();
