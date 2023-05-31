@@ -84,12 +84,12 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
 
         //Get purchased component part vendor from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentVendor = findViewById(R.id.editTextViewPurchasedComponentVendor2);
-        vendor = getIntent().getStringExtra("partVendor");
+        vendor = getIntent().getStringExtra("purchasedPartVendor");
         purchasedComponentVendor.setText(vendor);
 
         //Get purchased component part lead time from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentLeadTime = findViewById(R.id.editTextViewPurchasedComponentLeadTime);
-        leadTime = getIntent().getIntExtra("partLeadTime", 0);
+        leadTime = getIntent().getIntExtra("purchasedPartLeadTime", 0);
         purchasedComponentLeadTime.setText(String.valueOf(leadTime));
 
         assemblyID = getIntent().getIntExtra("purchasedPartAssemblyID", 0);
@@ -153,27 +153,54 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
             });
             alert.show();
         } else if (id == R.id.menuSavePurchasedPart) {
-            if (repository.getmAllAssemblyParts().size() == 0) {
-                if (purchasedComponentID == -1) {
-                    purchasedComponents = new PurchasedComponents(0, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID = 0);
-                    repository.insert(purchasedComponents);
-                } else {
-                    purchasedComponents = new PurchasedComponents(purchasedComponentID, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID = 0);
-                    repository.update(purchasedComponents);
-                }
+            name = purchasedComponentName.getText().toString();
+            description = purchasedComponentDescription.getText().toString();
+            quantity = Integer.parseInt(purchasedComponentQuantity.getText().toString());
+            location = purchasedComponentLocation.getText().toString();
+            vendor = purchasedComponentVendor.getText().toString();
+            leadTime = Integer.parseInt(purchasedComponentLeadTime.getText().toString());
+
+            if (quantity > 50000) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Quantity cannot be greater than 50,000", Toast.LENGTH_SHORT);
+                toast.show();
+            } else if (leadTime > 365) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Lead time cannot be greater than 365 days", Toast.LENGTH_SHORT);
+                toast.show();
             } else {
-                if (purchasedComponentID == -1) {
-                    purchasedComponents = new PurchasedComponents(0, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID);
-                    repository.insert(purchasedComponents);
+
+                if (repository.getmAllAssemblyParts().size() == 0) {
+                    if (purchasedComponentID == -1) {
+                        purchasedComponents = new PurchasedComponents(0, name, description, quantity, location, true, vendor, leadTime, assemblyID = 0);
+                        repository.insert(purchasedComponents);
+                        Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
+                        toast.show();
+                        finish();
+                    } else {
+                        purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, location, true, vendor, leadTime, assemblyID = 0);
+                        repository.update(purchasedComponents);
+                        Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
+                        toast.show();
+                        finish();
+                    }
                 } else {
-                    purchasedComponents = new PurchasedComponents(purchasedComponentID, purchasedComponentName.getText().toString(), purchasedComponentDescription.getText().toString(), Integer.parseInt(purchasedComponentQuantity.getText().toString()), purchasedComponentLocation.getText().toString(), true, purchasedComponentVendor.getText().toString(), Integer.parseInt(purchasedComponentLeadTime.getText().toString()), assemblyID);
-                    repository.update(purchasedComponents);
+                    if (purchasedComponentID == -1) {
+                        purchasedComponents = new PurchasedComponents(0, name, description, quantity, location, true, vendor, leadTime, assemblyID);
+                        repository.insert(purchasedComponents);
+                        Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
+                        toast.show();
+                        finish();
+                    } else {
+                        purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, location, true, vendor, leadTime, assemblyID);
+                        repository.update(purchasedComponents);
+                        Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
+                        toast.show();
+                        finish();
+                    }
                 }
             }
-
-            System.out.println("Purchased Component ID: " + purchasedComponentID);
-            Toast toast = Toast.makeText(getApplicationContext(), "Purchased Component saved", Toast.LENGTH_SHORT);
-            toast.show();
+            int purchasedComponentPosition = getIntent().getIntExtra("position", 0);
+            PurchasedComponentList.adapter.notifyItemChanged(purchasedComponentPosition);
+            PurchasedComponentList.adapter.setPartsList(repository.getmAllPurchasedComponents());
         }
         return true;
     }
