@@ -47,28 +47,28 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchased_components_details);
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Toolbar toolbar = findViewById(R.id.toolbarPurchasedComponentsDetails);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Toolbar toolbar = findViewById(R.id.toolbarDetails);
         setSupportActionBar(toolbar);
 
         purchasedComponentID = getIntent().getIntExtra("partID", 0);
 
         //Get purchased component part name from clicked item in list on the PurchasedComponentList.java screen
-        purchasedComponentName = findViewById(R.id.editTextViewAssemblyPartName);
+        purchasedComponentName = findViewById(R.id.editTextViewPurchasedPartName);
         name = getIntent().getStringExtra("partName");
         purchasedComponentName.setText(name);
 
         //Get purchased component part description from clicked item in list on the PurchasedComponentList.java screen
-        purchasedComponentDescription = findViewById(R.id.editTextViewAssemblyPartDescription);
+        purchasedComponentDescription = findViewById(R.id.editTextViewPurchasedPartDescription);
         description = getIntent().getStringExtra("partDescription");
         purchasedComponentDescription.setText(description);
 
         //Get purchased component part quantity from clicked item in list on the PurchasedComponentList.java screen
-        purchasedComponentQuantity = findViewById(R.id.editTextViewAssemblyPartQuantity);
+        purchasedComponentQuantity = findViewById(R.id.editTextViewPurchasedPartQuantity);
         quantity = getIntent().getIntExtra("partQty", 0);
         purchasedComponentQuantity.setText(String.valueOf(quantity));
 
         //Get purchased component part location from clicked item in list on the PurchasedComponentList.java screen
-        purchasedComponentLocation = findViewById(R.id.editTextViewAssemblyPartLocation);
+        purchasedComponentLocation = findViewById(R.id.editTextViewPurchasedPartLocation);
         location = getIntent().getStringExtra("partLocation");
         purchasedComponentLocation.setText(location);
 

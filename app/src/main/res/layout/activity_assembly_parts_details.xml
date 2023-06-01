@@ -10,13 +10,14 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarPurchasedComponentsDetails"
+            android:id="@+id/toolbarDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/material_dynamic_tertiary90"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,28 +25,25 @@
             android:id="@+id/textViewAssemblyPartComponentList"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="91dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="99dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="92dp"
             android:gravity="center_vertical"
             android:text="Purchased Components List"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartLocation" />
 
         <TextView
             android:id="@+id/textViewAssemblyPartLocation"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="49dp"
-            android:layout_marginEnd="69dp"
+            android:layout_marginTop="50dp"
             android:gravity="center_vertical"
             android:text="Location"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/editTextViewAssemblyPartLocation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartQty" />
 
@@ -53,26 +51,22 @@
             android:id="@+id/editTextViewAssemblyPartLocation"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="68dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="50dp"
             android:ems="10"
             android:gravity="center_vertical"
             android:inputType="text"
             android:text="Location"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartLocation"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartQuantity" />
 
         <TextView
             android:id="@+id/textViewAssemblyPartQty"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="25dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="71dp"
             android:gravity="center_vertical"
             android:text="Quantity"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/editTextViewAssemblyPartQuantity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartDescription" />
 
@@ -80,74 +74,67 @@
             android:id="@+id/editTextViewAssemblyPartDescription"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="46dp"
             android:layout_marginTop="50dp"
             android:ems="10"
             android:gravity="center_vertical"
             android:inputType="text"
             android:text="Description"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartDescription"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartName" />
-
-        <TextView
-            android:id="@+id/textViewAssemblyPartDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="47dp"
-            android:gravity="center_vertical"
-            android:text="Description"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/editTextViewAssemblyPartDescription"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartName" />
 
         <EditText
             android:id="@+id/editTextViewAssemblyPartQuantity"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="71dp"
             android:layout_marginTop="50dp"
             android:ems="10"
             android:gravity="center_vertical"
             android:inputType="number"
             android:text="Quantity"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartQty"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartDescription" />
+
+        <TextView
+            android:id="@+id/textViewAssemblyPartDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center_vertical"
+            android:text="Description"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartName" />
 
         <TextView
             android:id="@+id/textViewAssemblyPartName"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:text="Part Name"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/editTextViewAssemblyPartName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarPurchasedComponentsDetails" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetails" />
 
         <EditText
             android:id="@+id/editTextViewAssemblyPartName"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:gravity="center_vertical"
             android:inputType="text"
             android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartName"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDetails" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             android:background="@color/material_dynamic_neutral80"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartComponentList" />
 

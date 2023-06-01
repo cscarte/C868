@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarPurchasedComponentsDetails"
+            android:id="@+id/toolbarDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/material_dynamic_tertiary90"
@@ -30,7 +30,7 @@
             android:text="Lead Time Days"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartComponentList" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPurchasedPartComponentList" />
 
         <EditText
             android:id="@+id/editTextViewPurchasedComponentVendor2"
@@ -42,11 +42,11 @@
             android:gravity="center_vertical"
             android:inputType="text"
             android:text="Vendor"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartComponentList"
-            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartLocation" />
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedPartComponentList"
+            app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedPartLocation" />
 
         <TextView
-            android:id="@+id/textViewAssemblyPartComponentList"
+            android:id="@+id/textViewPurchasedPartComponentList"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -55,7 +55,7 @@
             android:text="Vendor"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPurchasedPartLocation" />
 
         <EditText
             android:id="@+id/editTextViewPurchasedComponentLeadTime"
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedComponentVendor2" />
 
         <TextView
-            android:id="@+id/textViewAssemblyPartLocation"
+            android:id="@+id/textViewPurchasedPartLocation"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -80,10 +80,10 @@
             android:text="Location"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartQty" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPurchasedPartQty" />
 
         <EditText
-            android:id="@+id/editTextViewAssemblyPartLocation"
+            android:id="@+id/editTextViewPurchasedPartLocation"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="68dp"
@@ -92,11 +92,11 @@
             android:gravity="center_vertical"
             android:inputType="text"
             android:text="Location"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartLocation"
-            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartQuantity" />
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedPartLocation"
+            app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedPartQuantity" />
 
         <TextView
-            android:id="@+id/textViewAssemblyPartQty"
+            android:id="@+id/textViewPurchasedPartQty"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -105,10 +105,10 @@
             android:text="Quantity"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPurchasedPartDescription" />
 
         <EditText
-            android:id="@+id/editTextViewAssemblyPartDescription"
+            android:id="@+id/editTextViewPurchasedPartDescription"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
@@ -117,11 +117,11 @@
             android:gravity="center_vertical"
             android:inputType="text"
             android:text="Description"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartDescription"
-            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartName" />
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedPartDescription"
+            app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedPartName" />
 
         <TextView
-            android:id="@+id/textViewAssemblyPartDescription"
+            android:id="@+id/textViewPurchasedPartDescription"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -130,10 +130,10 @@
             android:text="Description"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartName" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPurchasedPartName" />
 
         <EditText
-            android:id="@+id/editTextViewAssemblyPartQuantity"
+            android:id="@+id/editTextViewPurchasedPartQuantity"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="71dp"
@@ -142,11 +142,11 @@
             android:gravity="center_vertical"
             android:inputType="number"
             android:text="Quantity"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartQty"
-            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartDescription" />
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedPartQty"
+            app:layout_constraintTop_toBottomOf="@+id/editTextViewPurchasedPartDescription" />
 
         <TextView
-            android:id="@+id/textViewAssemblyPartName"
+            android:id="@+id/textViewPurchasedPartName"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -158,7 +158,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextViewAssemblyPartName"
+            android:id="@+id/editTextViewPurchasedPartName"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="50dp"
@@ -167,7 +167,7 @@
             android:gravity="center_vertical"
             android:inputType="text"
             android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/textViewAssemblyPartName"
+            app:layout_constraintStart_toEndOf="@+id/textViewPurchasedPartName"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

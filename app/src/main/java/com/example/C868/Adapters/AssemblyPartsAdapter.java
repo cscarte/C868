@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.C868.Entity.AssemblyParts;
+import com.example.C868.UI.AssemblyPartsDetails;
 import com.example.c868.R;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class AssemblyPartsAdapter extends RecyclerView.Adapter<AssemblyPartsAdap
                     int position = getAdapterPosition();
                     int count = getItemCount();
                     final AssemblyParts current = assemblyPartsList.get(position);
-                    Intent intent = new Intent(context, AssemblyParts.class);
+                    Intent intent = new Intent(context, AssemblyPartsDetails.class);
                     intent.putExtra("assemblyID", current.getAssemblyID());
                     intent.putExtra("partID", current.getPartID());
                     intent.putExtra("partName", current.getPartName());
