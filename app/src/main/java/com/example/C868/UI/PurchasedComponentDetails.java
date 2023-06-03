@@ -43,6 +43,7 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
 
     int assemblyID;
 
+    @SuppressLint("MissingInflatedId")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchased_components_details);
