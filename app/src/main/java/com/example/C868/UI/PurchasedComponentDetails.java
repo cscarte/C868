@@ -127,9 +127,9 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                             toast.show();
 
                             int purchasedComponentPosition = getIntent().getIntExtra("position", 0);
-                            PurchasedComponentList.adapter.notifyItemRemoved(purchasedComponentPosition);
-                            PurchasedComponentList.adapter.deleteItem(purchasedComponentPosition);
-                            PurchasedComponentList.adapter.notifyItemRangeChanged(purchasedComponentPosition, PurchasedComponentList.adapter.getItemCount());
+                            PurchasedComponentList.adapter.notifyItemChanged(purchasedComponentPosition);
+                            PurchasedComponentList.purchasedComponentsList.clear();
+                            PurchasedComponentList.purchasedComponentsList.addAll(repository.getmAllPurchasedComponents());
                             PurchasedComponentList.adapter.setPartsList(repository.getmAllPurchasedComponents());
                             finish();
                         }
@@ -166,13 +166,11 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                         repository.insert(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();
-                        finish();
                     } else {
                         purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, location, true, vendor, leadTime, assemblyID = 0);
                         repository.update(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();
-                        finish();
                     }
                 } else {
                     if (purchasedComponentID == 0) {
@@ -180,19 +178,20 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                         repository.insert(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();
-                        finish();
                     } else {
                         purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, location, true, vendor, leadTime, assemblyID);
                         repository.update(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();
-                        finish();
                     }
                 }
             }
             int purchasedComponentPosition = getIntent().getIntExtra("position", 0);
             PurchasedComponentList.adapter.notifyItemChanged(purchasedComponentPosition);
+            PurchasedComponentList.purchasedComponentsList.clear();
+            PurchasedComponentList.purchasedComponentsList.addAll(repository.getmAllPurchasedComponents());
             PurchasedComponentList.adapter.setPartsList(repository.getmAllPurchasedComponents());
+            finish();
         }
         return true;
     }

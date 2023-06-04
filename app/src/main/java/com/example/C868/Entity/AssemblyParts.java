@@ -4,6 +4,7 @@ import androidx.room.Entity;
 
 @Entity(tableName = "assemblyParts")
 public class AssemblyParts extends Parts {
+
     private int assemblyID;
 
     public AssemblyParts(int partID, String partName, String partDescription, int partQty, String partLocation, Boolean partPurchased, int assemblyID) {

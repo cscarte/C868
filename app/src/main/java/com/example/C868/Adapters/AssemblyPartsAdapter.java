@@ -81,6 +81,8 @@ public class AssemblyPartsAdapter extends RecyclerView.Adapter<AssemblyPartsAdap
                     int count = getItemCount();
                     final AssemblyParts current = assemblyPartsList.get(position);
                     Intent intent = new Intent(context, AssemblyPartsDetails.class);
+                    intent.putExtra("position", position);
+                    intent.putExtra("count", count);
                     intent.putExtra("assemblyID", current.getAssemblyID());
                     intent.putExtra("partID", current.getPartID());
                     intent.putExtra("partName", current.getPartName());
