@@ -28,8 +28,7 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
 
     EditText assemblyPartName;
     EditText assemblyPartDescription;
-    EditText assemblyPartQuantity;
-    EditText assemblyPartLocation;
+    EditText assemblyPartQuantity;    EditText assemblyPartLocation;
 
     RecyclerView recyclerViewAssemblyComponents;
 
