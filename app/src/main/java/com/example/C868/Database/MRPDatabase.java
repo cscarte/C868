@@ -7,18 +7,17 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.C868.DAO.AssemblyPartsDAO;
-import com.example.C868.DAO.PartsDAO;
 import com.example.C868.DAO.PurchasedComponentsDAO;
 import com.example.C868.Entity.AssemblyParts;
-import com.example.C868.Entity.Parts;
 import com.example.C868.Entity.PurchasedComponents;
 
-@Database(entities = {AssemblyParts.class, PurchasedComponents.class}, version = 15, exportSchema = false)
+@Database(entities = {AssemblyParts.class, PurchasedComponents.class}, version = 19, exportSchema = false)
 public abstract class MRPDatabase extends RoomDatabase {
 
     public abstract AssemblyPartsDAO assemblyPartsDAO();
 
     public abstract PurchasedComponentsDAO purchasedComponentsDAO();
+
 
     private static volatile MRPDatabase INSTANCE;
 

@@ -1,12 +1,15 @@
 package com.example.C868.UI;
 
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,16 +31,20 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
 
     EditText assemblyPartName;
     EditText assemblyPartDescription;
-    EditText assemblyPartQuantity;    EditText assemblyPartLocation;
+    EditText assemblyPartQuantity;
+    EditText assemblyPartLocation;
 
     RecyclerView recyclerViewAssemblyComponents;
+
+    Spinner spinnerAssemblyResource;
 
     int partID;
     String name;
     String description;
     int quantity;
     String location;
-    int assemblyID;
+    int resourceID;
+    String resourceName;
     boolean partPurchasedStatus;
 
     Repository repository = new Repository(getApplication());
@@ -45,6 +52,8 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
     PurchasedPartsAdapterAssemblyDetails purchasedPartsAdapter;
 
     List<PurchasedComponents> purchasedComponentsList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,9 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerViewAssemblyComponents = findViewById(R.id.recyclerViewAssemblyPurchasedComponent);
         recyclerViewAssemblyComponents.setLayoutManager(linearLayoutManager);
+
+        Resources resources = getResources();
+        String[] resourceNames = resources.getStringArray(R.array.assembly_lines);
 
         purchasedPartsAdapter = new PurchasedPartsAdapterAssemblyDetails(this);
 
@@ -82,6 +94,15 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
         purchasedComponentsList = repository.getmAllPurchasedComponents();
         //System.out.println("purchasedComponentsList: " + purchasedComponentsList);
         purchasedPartsAdapter.setPartsList(purchasedComponentsList);
+
+        resourceID = getIntent().getIntExtra("partResourceID", 0);
+        resourceName = getIntent().getStringExtra("partResourceName");
+
+        spinnerAssemblyResource = findViewById(R.id.spinner);
+        spinnerAssemblyResource.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.assembly_lines, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAssemblyResource.setAdapter(spinnerAdapter);
     }
 
     @Override
@@ -124,16 +145,16 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
             quantity = Integer.parseInt(assemblyPartQuantity.getText().toString());
             location = assemblyPartLocation.getText().toString();
             partPurchasedStatus = getIntent().getBooleanExtra("partPurchasedStatus", false);
-            assemblyID = getIntent().getIntExtra("assemblyID", 0);
+            String selectedAssemblyResource = spinnerAssemblyResource.getSelectedItem().toString();
 
             if (partID == 0) {
-                AssemblyParts assemblyParts = new AssemblyParts(0, name, description, quantity, location, partPurchasedStatus, assemblyID);
+                AssemblyParts assemblyParts = new AssemblyParts(0, name, description, quantity, location, partPurchasedStatus, selectedAssemblyResource);
                 Repository repository = new Repository(getApplication());
                 repository.insert(assemblyParts);
                 Toast toast = Toast.makeText(getApplicationContext(), "Changes saved", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-                AssemblyParts assemblyParts = new AssemblyParts(partID, name, description, quantity, location, partPurchasedStatus, assemblyID);
+                AssemblyParts assemblyParts = new AssemblyParts(partID, name, description, quantity, location, partPurchasedStatus, selectedAssemblyResource);
                 Repository repository = new Repository(getApplication());
                 repository.update(assemblyParts);
                 Toast toast = Toast.makeText(getApplicationContext(), "Changes saved", Toast.LENGTH_SHORT);

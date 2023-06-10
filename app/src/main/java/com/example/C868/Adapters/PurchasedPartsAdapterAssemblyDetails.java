@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
 
@@ -20,9 +21,8 @@ public class PurchasedPartsAdapterAssemblyDetails extends RecyclerView.Adapter<P
     private final Context context;
     private List<PurchasedComponents> purchasedComponentsList = new ArrayList<>();
 
+    private List<AssemblyParts> assemblyPartsList = new ArrayList<>();
     private final LayoutInflater mInflater;
-    private long lastTimeClicked;
-    private static final long clickTimeInterval = 300;
     public static boolean clickEnabled = true;
 
     public PurchasedPartsAdapterAssemblyDetails(Context context) {
@@ -39,6 +39,13 @@ public class PurchasedPartsAdapterAssemblyDetails extends RecyclerView.Adapter<P
 
     @Override
     public void onBindViewHolder(@NonNull PurchasedPartsAdapterAssemblyDetails.PartsViewHolder holder, int position) {
+        if (purchasedComponentsList != null) {
+            PurchasedComponents current = purchasedComponentsList.get(position);
+            String name = current.getPartName();
+            holder.partsItemView.setText(name);
+        } else {
+            holder.partsItemView.setText("No Parts");
+        }
         holder.itemView.setOnClickListener(v -> {
             holder.checkBox.performClick();
         });
@@ -72,6 +79,12 @@ public class PurchasedPartsAdapterAssemblyDetails extends RecyclerView.Adapter<P
             partsItemView.setOnClickListener(v -> {
                 checkBox.performClick();
             });
+
+            if (checkBox.isChecked()) {
+                checkBox.setChecked(true);
+            } else {
+                checkBox.setChecked(false);
+            }
         }
 
         @Override

@@ -15,6 +15,7 @@ public class Parts {
     private String partLocation;
     private Boolean partPurchased;
 
+
     public Parts(int partID, String partName, String partDescription, int partQty, String partLocation, Boolean partPurchased) {
         this.partID = partID;
         this.partName = partName;

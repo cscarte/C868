@@ -23,8 +23,6 @@ public class AssemblyPartsAdapter extends RecyclerView.Adapter<AssemblyPartsAdap
     private List<AssemblyParts> assemblyPartsList = new ArrayList<>();
 
     private final LayoutInflater mInflater;
-    private long lastTimeClicked;
-    private static final long clickTimeInterval = 300;
     public static boolean clickEnabled = true;
 
     public AssemblyPartsAdapter(Context context) {
@@ -45,8 +43,6 @@ public class AssemblyPartsAdapter extends RecyclerView.Adapter<AssemblyPartsAdap
             AssemblyParts current = assemblyPartsList.get(position);
             String name = current.getPartName();
             holder.assemblyPartsItemView.setText(name);
-        } else {
-            holder.assemblyPartsItemView.setText("No Parts");
         }
     }
 
@@ -74,7 +70,6 @@ public class AssemblyPartsAdapter extends RecyclerView.Adapter<AssemblyPartsAdap
             super(view);
             assemblyPartsItemView = view.findViewById(R.id.rowAssemblyPartsTextView);
             assemblyPartsItemView.setOnClickListener(v -> {
-                long now = System.currentTimeMillis();
                 if (clickEnabled) {
                     clickEnabled = false;
                     int position = getAdapterPosition();
@@ -83,13 +78,13 @@ public class AssemblyPartsAdapter extends RecyclerView.Adapter<AssemblyPartsAdap
                     Intent intent = new Intent(context, AssemblyPartsDetails.class);
                     intent.putExtra("position", position);
                     intent.putExtra("count", count);
-                    intent.putExtra("assemblyID", current.getAssemblyID());
                     intent.putExtra("partID", current.getPartID());
                     intent.putExtra("partName", current.getPartName());
                     intent.putExtra("partDescription", current.getPartDescription());
                     intent.putExtra("partQty", current.getPartQty());
                     intent.putExtra("partLocation", current.getPartLocation());
                     intent.putExtra("partPurchased", current.getPartPurchased());
+                    intent.putExtra("resourceName", current.getResourceName());
                     context.startActivity(intent);
                 }
             });

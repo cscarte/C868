@@ -3,10 +3,8 @@ package com.example.C868.Database;
 import android.app.Application;
 
 import com.example.C868.DAO.AssemblyPartsDAO;
-import com.example.C868.DAO.PartsDAO;
 import com.example.C868.DAO.PurchasedComponentsDAO;
 import com.example.C868.Entity.AssemblyParts;
-import com.example.C868.Entity.Parts;
 import com.example.C868.Entity.PurchasedComponents;
 
 import java.util.List;
@@ -17,6 +15,7 @@ public class Repository {
 
     private final AssemblyPartsDAO mAssemblyPartsDAO;
     private final PurchasedComponentsDAO mPurchasedComponentsDAO;
+
     private List<AssemblyParts> mAllAssemblyParts;
     private List<PurchasedComponents> mAllPurchasedComponents;
 
@@ -154,6 +153,17 @@ public class Repository {
     public void delete(PurchasedComponents purchasedComponents) {
         databaseExecutor.execute(() -> {
             mPurchasedComponentsDAO.delete(purchasedComponents);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void getAssemblyPartsCount() {
+        databaseExecutor.execute(() -> {
+            mAssemblyPartsDAO.getCountOfAssemblyParts();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

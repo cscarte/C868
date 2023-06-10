@@ -22,8 +22,6 @@ public class PurchasedPartsAdapter extends RecyclerView.Adapter<PurchasedPartsAd
     private List<PurchasedComponents> purchasedComponentsList = new ArrayList<>();
 
     private final LayoutInflater mInflater;
-    private long lastTimeClicked;
-    private static final long clickTimeInterval = 300;
     public static boolean clickEnabled = true;
 
     public PurchasedPartsAdapter(Context context) {

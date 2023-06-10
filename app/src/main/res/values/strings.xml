@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">C868</string>
+    
+    <string-array name="assembly_lines">
+    <item>Assembly Line 1</item>
+    <item>Assembly Line 2</item>
+    <item>Assembly Line 3</item>
+    </string-array>
 </resources>

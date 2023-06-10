@@ -1,6 +1,5 @@
 package com.example.C868.DAO;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -25,9 +24,6 @@ public interface AssemblyPartsDAO {
 
     @Query("SELECT * FROM assemblyParts ORDER BY partID ASC")
     List<AssemblyParts> getAllAssemblyParts();
-
-    @Query("SELECT * FROM assemblyParts WHERE assemblyID = :assemblyID")
-    List<AssemblyParts> getAssemblyPartsByPartID(int assemblyID);
 
     @Query("DELETE FROM assemblyParts")
     int deleteAllAssemblyParts();
