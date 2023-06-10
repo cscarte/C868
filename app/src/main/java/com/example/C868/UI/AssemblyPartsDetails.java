@@ -25,6 +25,7 @@ import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class AssemblyPartsDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -46,6 +47,8 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
     int resourceID;
     String resourceName;
     boolean partPurchasedStatus;
+
+    int spinnerDefaultPosition = 0;
 
     Repository repository = new Repository(getApplication());
 
@@ -95,14 +98,18 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
         //System.out.println("purchasedComponentsList: " + purchasedComponentsList);
         purchasedPartsAdapter.setPartsList(purchasedComponentsList);
 
-        resourceID = getIntent().getIntExtra("partResourceID", 0);
-        resourceName = getIntent().getStringExtra("partResourceName");
+        resourceName = getIntent().getStringExtra("resourceName");
 
         spinnerAssemblyResource = findViewById(R.id.spinner);
         spinnerAssemblyResource.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.assembly_lines, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAssemblyResource.setAdapter(spinnerAdapter);
+
+        if (resourceName != null){
+            spinnerDefaultPosition = Arrays.asList(resourceNames).indexOf(resourceName);
+            spinnerAssemblyResource.setSelection(spinnerDefaultPosition);
+        }
     }
 
     @Override

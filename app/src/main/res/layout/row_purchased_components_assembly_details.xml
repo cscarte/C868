@@ -16,13 +16,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-                <CheckBox
-                    android:id="@+id/checkBoxPurchasedPartsAssemblyDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:textSize="18sp" />
-
                 <TextView
                     android:id="@+id/partDetailsAssemblyDetailsTextView"
                     android:layout_width="match_parent"

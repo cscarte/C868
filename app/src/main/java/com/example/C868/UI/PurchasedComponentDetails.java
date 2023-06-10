@@ -9,15 +9,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.C868.Database.Repository;
+import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
+
+import java.util.ArrayList;
 
 public class PurchasedComponentDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -33,6 +38,8 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
 
     PurchasedComponents purchasedComponents;
 
+    ArrayList<AssemblyParts> assemblyPartsList = new ArrayList<>();
+
     int purchasedComponentID;
     String name;
     String description;
@@ -42,6 +49,11 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
     int leadTime;
 
     int assemblyID;
+
+    private AssemblyParts assemblyParts;
+    private AssemblyParts assemblyPartsSelected;
+
+    Spinner spinnerAssemblyName;
 
     @SuppressLint("MissingInflatedId")
     public void onCreate(Bundle savedInstanceState) {
@@ -84,6 +96,27 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         purchasedComponentLeadTime.setText(String.valueOf(leadTime));
 
         assemblyID = getIntent().getIntExtra("purchasedPartAssemblyID", 0);
+
+        assemblyPartsList.addAll(repository.getmAllAssemblyParts());
+        final ArrayAdapter<AssemblyParts> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assemblyPartsList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerAssemblyName = findViewById(R.id.spinnerAssemblyName);
+        spinnerAssemblyName.setAdapter(spinnerAdapter);
+        spinnerAssemblyName.setOnItemSelectedListener(this);
+        spinnerAssemblyName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    assemblyParts = (AssemblyParts) parent.getSelectedItem();
+                    assemblyID = assemblyParts.getPartID();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     @Override
@@ -151,6 +184,10 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
             location = purchasedComponentLocation.getText().toString();
             vendor = purchasedComponentVendor.getText().toString();
             leadTime = Integer.parseInt(purchasedComponentLeadTime.getText().toString());
+
+            assemblyPartsSelected = (AssemblyParts) spinnerAssemblyName.getSelectedItem();
+            assemblyID = assemblyPartsSelected.getPartID();
+
 
             if (quantity > 50000) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Quantity cannot be greater than 50,000", Toast.LENGTH_SHORT);

@@ -19,7 +19,7 @@ import java.util.List;
 
 public class PurchasedPartsAdapterAssemblyDetails extends RecyclerView.Adapter<PurchasedPartsAdapterAssemblyDetails.PartsViewHolder> {
     private final Context context;
-    private List<PurchasedComponents> purchasedComponentsList = new ArrayList<>();
+    private static List<PurchasedComponents> purchasedComponentsList = new ArrayList<>();
 
     private List<AssemblyParts> assemblyPartsList = new ArrayList<>();
     private final LayoutInflater mInflater;
@@ -42,12 +42,13 @@ public class PurchasedPartsAdapterAssemblyDetails extends RecyclerView.Adapter<P
         if (purchasedComponentsList != null) {
             PurchasedComponents current = purchasedComponentsList.get(position);
             String name = current.getPartName();
+
             holder.partsItemView.setText(name);
         } else {
             holder.partsItemView.setText("No Parts");
         }
         holder.itemView.setOnClickListener(v -> {
-            holder.checkBox.performClick();
+            //holder.checkBox.performClick();
         });
     }
 
@@ -75,16 +76,10 @@ public class PurchasedPartsAdapterAssemblyDetails extends RecyclerView.Adapter<P
         private PartsViewHolder(View view) {
             super(view);
             partsItemView = itemView.findViewById(R.id.partDetailsAssemblyDetailsTextView);
-            checkBox = itemView.findViewById(R.id.checkBoxPurchasedPartsAssemblyDetails);
+            //checkBox = itemView.findViewById(R.id.checkBoxPurchasedPartsAssemblyDetails);
             partsItemView.setOnClickListener(v -> {
-                checkBox.performClick();
+                //checkBox.performClick();
             });
-
-            if (checkBox.isChecked()) {
-                checkBox.setChecked(true);
-            } else {
-                checkBox.setChecked(false);
-            }
         }
 
         @Override
