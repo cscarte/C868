@@ -25,6 +25,7 @@ import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
     PurchasedPartsAdapterAssemblyDetails purchasedPartsAdapter;
 
     List<PurchasedComponents> purchasedComponentsList;
+    
 
 
 
@@ -95,8 +97,17 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
 
         recyclerViewAssemblyComponents.setAdapter(purchasedPartsAdapter);
         purchasedComponentsList = repository.getmAllPurchasedComponents();
+
+        List<PurchasedComponents> purchasedComponentsByAssembly = new ArrayList<>();
+
+        for (PurchasedComponents purchasedComponents : purchasedComponentsList) {
+            if (purchasedComponents.getPurchasedPartAssemblyID() == partID) {
+                purchasedComponentsByAssembly.add(purchasedComponents);
+            }
+        }
+
         //System.out.println("purchasedComponentsList: " + purchasedComponentsList);
-        purchasedPartsAdapter.setPartsList(purchasedComponentsList);
+        purchasedPartsAdapter.setPartsList(purchasedComponentsByAssembly);
 
         resourceName = getIntent().getStringExtra("resourceName");
 
