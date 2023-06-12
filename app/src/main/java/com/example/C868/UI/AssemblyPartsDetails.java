@@ -56,8 +56,8 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
     PurchasedPartsAdapterAssemblyDetails purchasedPartsAdapter;
 
     List<PurchasedComponents> purchasedComponentsList;
-    
 
+    List<PurchasedComponents> purchasedComponentsByAssembly;
 
 
     @Override
@@ -98,7 +98,7 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
         recyclerViewAssemblyComponents.setAdapter(purchasedPartsAdapter);
         purchasedComponentsList = repository.getmAllPurchasedComponents();
 
-        List<PurchasedComponents> purchasedComponentsByAssembly = new ArrayList<>();
+        purchasedComponentsByAssembly = new ArrayList<>();
 
         for (PurchasedComponents purchasedComponents : purchasedComponentsList) {
             if (purchasedComponents.getPurchasedPartAssemblyID() == partID) {
@@ -187,6 +187,11 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
             finish();
 
         } else {
+            if (purchasedComponentsByAssembly.size() > 0){
+                Toast toast = Toast.makeText(getApplicationContext(), "Cannot delete part with purchased components", Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Delete Part");
             builder.setMessage("Are you sure you want to delete this part?");
@@ -214,7 +219,7 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
                 }
             });
             builder.show();
-        }
+        }}
         return true;
     }
 }
