@@ -1,6 +1,7 @@
 package com.example.C868.UI;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,9 @@ import com.example.C868.Database.Repository;
 import com.example.C868.Entity.AssemblyParts;
 import com.example.c868.R;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AssemblyTableView extends AppCompatActivity {
@@ -26,11 +29,24 @@ public class AssemblyTableView extends AppCompatActivity {
 
     private SearchView searchView;
 
+    long timestamp = System.currentTimeMillis();
+
+    Date currentTime = new Date(timestamp);
+
+    TextView currentTimeText;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_assemblies);
 
         assemblyPartsList = repository.getmAllAssemblyParts();
+
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(timestamp);
+        String[] split = currentDateTimeString.split(" ");
+
+        currentTimeText = findViewById(R.id.currentTimeTextView);
+        currentTimeText.setText(split[0] + " " + split[1] + " " + split[2] + " " + split[3]);
+
         searchView = findViewById(R.id.tableSearchBar);
         //searchView.setQueryHint("Search by Part Name");
         searchView.clearFocus();
@@ -41,7 +57,7 @@ public class AssemblyTableView extends AppCompatActivity {
             }
 
             public boolean onQueryTextChange(String newText) {
-                filterText(newText);
+                //filterText(newText);
                 return false;
             }
         });

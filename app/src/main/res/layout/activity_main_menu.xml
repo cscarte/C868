@@ -23,14 +23,14 @@
             app:layout_constraintTop_toBottomOf="@+id/mainMenuSetUpAssemblyParts" />
 
         <Button
-            android:id="@+id/mainMenuViewMBOMs"
+            android:id="@+id/mainMenuInventoryScreen"
             android:layout_width="205dp"
             android:layout_height="75dp"
             android:layout_marginStart="160dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="160dp"
             android:onClick="enterAssemblyTableScreen"
-            android:text="View MBOMs"
+            android:text="Inventory on hand"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainMenuTransactInventory" />

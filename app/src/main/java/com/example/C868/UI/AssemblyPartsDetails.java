@@ -100,11 +100,19 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
 
         purchasedComponentsByAssembly = new ArrayList<>();
 
+        if (partID != 0) {
+            for (PurchasedComponents purchasedComponents : purchasedComponentsList) {
+                if (purchasedComponents.getPurchasedPartAssemblyID() == partID) {
+                    purchasedComponentsByAssembly.add(purchasedComponents);
+                }
+            }
+        }
+        /**
         for (PurchasedComponents purchasedComponents : purchasedComponentsList) {
             if (purchasedComponents.getPurchasedPartAssemblyID() == partID) {
                 purchasedComponentsByAssembly.add(purchasedComponents);
             }
-        }
+        }*/
 
         //System.out.println("purchasedComponentsList: " + purchasedComponentsList);
         purchasedPartsAdapter.setPartsList(purchasedComponentsByAssembly);

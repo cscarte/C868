@@ -186,7 +186,6 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
             leadTime = Integer.parseInt(purchasedComponentLeadTime.getText().toString());
 
             assemblyPartsSelected = (AssemblyParts) spinnerAssemblyName.getSelectedItem();
-            assemblyID = assemblyPartsSelected.getPartID();
 
 
             if (quantity > 50000) {
@@ -196,7 +195,6 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                 Toast toast = Toast.makeText(getApplicationContext(), "Lead time cannot be greater than 365 days", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-
                 if (repository.getmAllAssemblyParts().size() == 0) {
                     if (purchasedComponentID == 0) {
                         purchasedComponents = new PurchasedComponents(0, name, description, quantity, location, true, vendor, leadTime, assemblyID = 0);
