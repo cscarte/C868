@@ -79,4 +79,9 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(MainMenu.this, AssemblyTableView.class);
         startActivity(intent);
     }
+
+    public void enterAssemblyTransactionScreen(View view) {
+        Intent intent = new Intent(MainMenu.this, AssemblyTransactions.class);
+        startActivity(intent);
+    }
 }
