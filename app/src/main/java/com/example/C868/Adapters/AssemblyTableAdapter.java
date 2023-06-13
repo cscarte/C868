@@ -58,6 +58,7 @@ public class AssemblyTableAdapter extends RecyclerView.Adapter<AssemblyTableAdap
         notifyDataSetChanged();
     }
 
+
     public class AssemblyViewHolder extends RecyclerView.ViewHolder {
         private final TextView assemblyPartName;
         private final TextView assemblyPartDescription;

@@ -97,12 +97,20 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
 
         assemblyID = getIntent().getIntExtra("purchasedPartAssemblyID", 0);
 
+        assemblyPartsList.add(new AssemblyParts(0, "", "", 0,"" , false, ""));
         assemblyPartsList.addAll(repository.getmAllAssemblyParts());
         final ArrayAdapter<AssemblyParts> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assemblyPartsList);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerAssemblyName = findViewById(R.id.spinnerAssemblyName);
         spinnerAssemblyName.setAdapter(spinnerAdapter);
+
+        if(assemblyID == 0){
+            spinnerAssemblyName.setSelection(0);
+        } else {
+            spinnerAssemblyName.setSelection(assemblyID);
+        }
+        spinnerAssemblyName.setSelection(assemblyID);
         spinnerAssemblyName.setOnItemSelectedListener(this);
         spinnerAssemblyName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

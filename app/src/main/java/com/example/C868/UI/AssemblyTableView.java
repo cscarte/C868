@@ -2,7 +2,6 @@ package com.example.C868.UI;
 
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -12,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.C868.Adapters.AssemblyTableAdapter;
 import com.example.C868.Database.Repository;
 import com.example.C868.Entity.AssemblyParts;
+import com.example.C868.Entity.Parts;
+import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
 
 import java.text.DateFormat;
@@ -26,6 +27,8 @@ public class AssemblyTableView extends AppCompatActivity {
     private Repository repository = new Repository(getApplication());
 
     private List<AssemblyParts> assemblyPartsList = new ArrayList<>();
+    private List<PurchasedComponents> purchasedComponentsList = new ArrayList<>();
+    private List<Parts> partsList = new ArrayList<>();
 
     private SearchView searchView;
 
@@ -52,19 +55,28 @@ public class AssemblyTableView extends AppCompatActivity {
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             public boolean onQueryTextSubmit(String query) {
-                filterText(query);
+                if (query.isEmpty()) {
+                    assemblyPartsList.clear();
+                    assemblyPartsList = repository.getmAllAssemblyParts();
+                    assemblyTableAdapter.setAssemblyParts(assemblyPartsList);
+                } else {
+                    //filterText(query);
+                }
                 return false;
             }
 
             public boolean onQueryTextChange(String newText) {
-                //filterText(newText);
+                filterText(newText);
                 return false;
             }
+
+
         });
         recyclerView = findViewById(R.id.tableAssemblyPartsRecyclerView);
         assemblyTableAdapter = new AssemblyTableAdapter(this);
         recyclerView.setAdapter(assemblyTableAdapter);
         assemblyTableAdapter.setAssemblyParts(assemblyPartsList);
+
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,7 +90,7 @@ public class AssemblyTableView extends AppCompatActivity {
             }
         }
         if (filteredList.isEmpty()) {
-            Toast toast = Toast.makeText(getApplicationContext(), "No matches found", Toast.LENGTH_SHORT);
+            assemblyTableAdapter.setAssemblyParts(assemblyPartsList);
         } else {
             assemblyTableAdapter.setAssemblyParts(filteredList);
         }

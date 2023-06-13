@@ -23,14 +23,14 @@
             app:layout_constraintTop_toBottomOf="@+id/mainMenuSetUpAssemblyParts" />
 
         <Button
-            android:id="@+id/mainMenuInventoryScreen"
+            android:id="@+id/mainMenuAssemblyInventoryOnHand"
             android:layout_width="205dp"
             android:layout_height="75dp"
             android:layout_marginStart="160dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="160dp"
             android:onClick="enterAssemblyTableScreen"
-            android:text="Inventory on hand"
+            android:text="Assembly Inventory"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainMenuTransactInventory" />
@@ -50,13 +50,13 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginStart="150dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="150dp"
             android:background="#000000"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/baseline_cable_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

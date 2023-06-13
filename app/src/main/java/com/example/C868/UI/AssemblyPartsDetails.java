@@ -173,6 +173,10 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
             partPurchasedStatus = getIntent().getBooleanExtra("partPurchasedStatus", false);
             String selectedAssemblyResource = spinnerAssemblyResource.getSelectedItem().toString();
 
+            if (selectedAssemblyResource.equals("Select an assembly resource")){
+                selectedAssemblyResource = null;
+            }
+
             if (partID == 0) {
                 AssemblyParts assemblyParts = new AssemblyParts(0, name, description, quantity, location, partPurchasedStatus, selectedAssemblyResource);
                 Repository repository = new Repository(getApplication());
