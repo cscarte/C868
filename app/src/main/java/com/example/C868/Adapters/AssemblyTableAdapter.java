@@ -66,9 +66,9 @@ public class AssemblyTableAdapter extends RecyclerView.Adapter<AssemblyTableAdap
 
         public AssemblyViewHolder(@NonNull View itemView) {
             super(itemView);
-            assemblyPartName = itemView.findViewById(R.id.tableRowAssemblyName);
-            assemblyPartDescription = itemView.findViewById(R.id.tableRowAssemblyDescription);
-            assemblyPartQuantity = itemView.findViewById(R.id.tableRowAssemblyQtyOnHand);
+            assemblyPartName = itemView.findViewById(R.id.tableRowAName);
+            assemblyPartDescription = itemView.findViewById(R.id.tableRowADesription);
+            assemblyPartQuantity = itemView.findViewById(R.id.tableRowAQtyOnHand);
         }
     }
 }

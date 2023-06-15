@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tableRowAName"
+                android:id="@+id/tableRowAssemblyName"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
@@ -29,12 +29,12 @@
                 android:padding="10sp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tableRowADesription"
+                app:layout_constraintEnd_toStartOf="@+id/tableRowAssemblyDescription"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tableRowADesription"
+                android:id="@+id/tableRowAssemblyDescription"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -44,13 +44,13 @@
                 android:padding="10sp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tableRowAQtyOnHand"
-                app:layout_constraintStart_toEndOf="@+id/tableRowAName"
+                app:layout_constraintEnd_toStartOf="@+id/tableRowAssemblyQtyOnHand"
+                app:layout_constraintStart_toEndOf="@+id/tableRowAssemblyName"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/tableRowAQtyOnHand"
+                android:id="@+id/tableRowAssemblyQtyOnHand"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -60,7 +60,7 @@
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tableRowADesription"
+                app:layout_constraintStart_toEndOf="@+id/tableRowAssemblyDescription"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
