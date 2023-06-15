@@ -91,7 +91,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="TextView"
+        android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/assemblyTransactionQtyOnHandTextView"
         app:layout_constraintTop_toBottomOf="@+id/assemblyNameTransactionSpinner" />
 

@@ -11,7 +11,7 @@ import com.example.C868.DAO.PurchasedComponentsDAO;
 import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
 
-@Database(entities = {AssemblyParts.class, PurchasedComponents.class}, version = 25, exportSchema = false)
+@Database(entities = {AssemblyParts.class, PurchasedComponents.class}, version = 26, exportSchema = false)
 public abstract class MRPDatabase extends RoomDatabase {
 
     public abstract AssemblyPartsDAO assemblyPartsDAO();

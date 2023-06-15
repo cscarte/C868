@@ -42,6 +42,8 @@ public class AssemblyTransactions extends AppCompatActivity {
 
     Spinner assemblySpinner;
     int spinnerDefaultPosition = 0;
+    int qty = 0;
+    int adjustmentQty = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,75 +84,111 @@ public class AssemblyTransactions extends AppCompatActivity {
     }
 
     public void addAssemblyTransaction(View view) {
-        int qty = Integer.parseInt(qtyOnHand.getText().toString());
-        int adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
-        purchasedComponentsList = repository.getmAllPurchasedComponents();
-        purchasedComponentQuantities = new ArrayList<>();
-
-        for (PurchasedComponents purchasedComponents1 : purchasedComponentsList) {
-            if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
-                purchasedComponentQuantities.add(purchasedComponents1.getPartQty());
-                purchasedComponentsInAssembly.add(purchasedComponents1);
-            }
-        }
-
-        System.out.println("The minimum value in the list is " + Collections.min(purchasedComponentQuantities) + ".");
-        System.out.println(purchasedComponentsInAssembly);
-
-        if (Collections.min(purchasedComponentQuantities) >= adjustmentQty) {
-            for (PurchasedComponents purchasedComponents1 : purchasedComponentsInAssembly) {
-                if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
-                    purchasedComponents1.setPartQty(purchasedComponents1.getPartQty() - adjustmentQty);
-                    repository.update(purchasedComponents1);
-                }
-            }
-            assemblyParts.setPartQty(qty + adjustmentQty);
-            repository.update(assemblyParts);
-            qtyOnHand.setText(String.valueOf(assemblyParts.getPartQty()));
-            Toast toast1 = Toast.makeText(getApplicationContext(), "Assembly transaction added.", Toast.LENGTH_SHORT);
-            toast1.show();
-            purchasedComponentsInAssembly.clear();
-            purchasedComponentQuantities.clear();
-            onBackPressed();
+        if (!qtyOnHand.getText().toString().isEmpty()) {
+            qty = Integer.parseInt(qtyOnHand.getText().toString());
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Insufficient components to make assembly", Toast.LENGTH_SHORT);
-            toast.show();
+            qty = 0;
         }
-    }
 
-    public void subtractAssemblyTransaction(View view) {
-        int qty = Integer.parseInt(qtyOnHand.getText().toString());
-        int adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
-        purchasedComponentsList = repository.getmAllPurchasedComponents();
-        purchasedComponentQuantities = new ArrayList<>();
+        if (!qtyAdjustment.getText().toString().isEmpty()) {
+            adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
+        } else {
+            adjustmentQty = 0;
+        }
 
-        if (qty > 0) {
+        if (adjustmentQty <= 0) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a positive number.", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+
+            purchasedComponentsList = repository.getmAllPurchasedComponents();
+            purchasedComponentQuantities = new ArrayList<>();
+
             for (PurchasedComponents purchasedComponents1 : purchasedComponentsList) {
-                if (purchasedComponents1.getPartID() == assemblyParts.getPartID()) {
+                if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
                     purchasedComponentQuantities.add(purchasedComponents1.getPartQty());
                     purchasedComponentsInAssembly.add(purchasedComponents1);
                 }
             }
 
+            System.out.println(purchasedComponentsInAssembly);
 
-            for (PurchasedComponents purchasedComponents1 : purchasedComponentsInAssembly) {
-                if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
-                    purchasedComponents1.setPartQty(purchasedComponents1.getPartQty() + adjustmentQty);
-                    repository.update(purchasedComponents1);
+            if (!purchasedComponentQuantities.isEmpty()) {
+                if (Collections.min(purchasedComponentQuantities) >= adjustmentQty) {
+                    for (PurchasedComponents purchasedComponents1 : purchasedComponentsInAssembly) {
+                        if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
+                            purchasedComponents1.setPartQty(purchasedComponents1.getPartQty() - adjustmentQty);
+                            repository.update(purchasedComponents1);
+                        }
+                    }
+                    assemblyParts.setPartQty(qty + adjustmentQty);
+                    repository.update(assemblyParts);
+                    qtyOnHand.setText(String.valueOf(assemblyParts.getPartQty()));
+                    Toast toast1 = Toast.makeText(getApplicationContext(), "Assembly transaction added.", Toast.LENGTH_SHORT);
+                    toast1.show();
+                    purchasedComponentsInAssembly.clear();
+                    purchasedComponentQuantities.clear();
+                    onBackPressed();
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Insufficient components to make assembly", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Please create an assembly to transact", Toast.LENGTH_SHORT);
+                toast.show();
             }
+        }
+    }
 
-            assemblyParts.setPartQty(qty - adjustmentQty);
-            repository.update(assemblyParts);
-            qtyOnHand.setText(String.valueOf(assemblyParts.getPartQty()));
-            Toast toast1 = Toast.makeText(getApplicationContext(), "Assembly subtracted, components returned to stock.", Toast.LENGTH_SHORT);
-            toast1.show();
-            purchasedComponentsInAssembly.clear();
-            purchasedComponentQuantities.clear();
-            onBackPressed();
+    public void subtractAssemblyTransaction(View view) {
+        if (!qtyOnHand.getText().toString().isEmpty()) {
+            qty = Integer.parseInt(qtyOnHand.getText().toString());
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Assembly quantity cannot be less than 0.", Toast.LENGTH_SHORT);
+            qty = 0;
+        }
+
+        if (!qtyAdjustment.getText().toString().isEmpty()) {
+            adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
+        } else {
+            adjustmentQty = 0;
+        }
+
+        purchasedComponentsList = repository.getmAllPurchasedComponents();
+        purchasedComponentQuantities = new ArrayList<>();
+
+        if (adjustmentQty <= 0) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a positive number.", Toast.LENGTH_SHORT);
             toast.show();
+        } else {
+
+            if (qty > 0) {
+                for (PurchasedComponents purchasedComponents1 : purchasedComponentsList) {
+                    if (purchasedComponents1.getPartID() == assemblyParts.getPartID()) {
+                        purchasedComponentQuantities.add(purchasedComponents1.getPartQty());
+                        purchasedComponentsInAssembly.add(purchasedComponents1);
+                    }
+                }
+
+
+                for (PurchasedComponents purchasedComponents1 : purchasedComponentsInAssembly) {
+                    if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
+                        purchasedComponents1.setPartQty(purchasedComponents1.getPartQty() + adjustmentQty);
+                        repository.update(purchasedComponents1);
+                    }
+                }
+
+                assemblyParts.setPartQty(qty - adjustmentQty);
+                repository.update(assemblyParts);
+                qtyOnHand.setText(String.valueOf(assemblyParts.getPartQty()));
+                Toast toast1 = Toast.makeText(getApplicationContext(), "Assembly subtracted, components returned to stock.", Toast.LENGTH_SHORT);
+                toast1.show();
+                purchasedComponentsInAssembly.clear();
+                purchasedComponentQuantities.clear();
+                onBackPressed();
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Assembly does not exist or qty is less than 0", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
     }
 }
