@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.C868.Adapters.AssemblyTableAdapter;
 import com.example.C868.Database.Repository;
 import com.example.C868.Entity.AssemblyParts;
-import com.example.C868.Entity.Parts;
-import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
 
 import java.text.DateFormat;
@@ -27,8 +25,6 @@ public class AssemblyTableView extends AppCompatActivity {
     private Repository repository = new Repository(getApplication());
 
     private List<AssemblyParts> assemblyPartsList = new ArrayList<>();
-    private List<PurchasedComponents> purchasedComponentsList = new ArrayList<>();
-    private List<Parts> partsList = new ArrayList<>();
 
     private SearchView searchView;
 
@@ -91,8 +87,7 @@ public class AssemblyTableView extends AppCompatActivity {
         }
         if (filteredList.isEmpty()) {
             assemblyTableAdapter.setAssemblyParts(assemblyPartsList);
-        } else {
-            assemblyTableAdapter.setAssemblyParts(filteredList);
         }
+        assemblyTableAdapter.setAssemblyParts(filteredList);
     }
 }

@@ -35,6 +35,7 @@
             android:exported="true"/>
         <activity android:name="com.example.C868.UI.AssemblyTableView"></activity>
         <activity android:name="com.example.C868.UI.AssemblyTransactions"></activity>
+        <activity android:name="com.example.C868.UI.PurchasedComponentTableView"></activity>
     </application>
 
 </manifest>

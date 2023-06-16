@@ -32,7 +32,7 @@ public class MainMenu extends AppCompatActivity {
         Repository repository = new Repository(getApplication());
         assemblyPartsList = repository.getmAllAssemblyParts();
         purchasedComponentsList = repository.getmAllPurchasedComponents();
-/**
+
         if (assemblyPartsList.size() < 1) {
             assemblyParts = new AssemblyParts(1, "Assembly Part 1", "Assembly Part 1 Description", 1, "Assembly Part 1 Location", false, "Assembly Line 1");
             repository.insert(assemblyParts);
@@ -60,7 +60,7 @@ public class MainMenu extends AppCompatActivity {
             purchasedComponents = new PurchasedComponents(8, "Purchased Component 8", "Purchased Component 8 Description", 1, "Purchased Component 8 Location", true, "Walmart", 1, 1);
             repository.insert(purchasedComponents);
         }
-*/
+
         System.out.println("There are " + assemblyPartsList.size() + " assembly parts.");
         System.out.println("There are " + purchasedComponentsList.size() + " purchased components.");
     }
@@ -82,6 +82,11 @@ public class MainMenu extends AppCompatActivity {
 
     public void enterAssemblyTransactionScreen(View view) {
         Intent intent = new Intent(MainMenu.this, AssemblyTransactions.class);
+        startActivity(intent);
+    }
+
+    public void enterPurchasedComponentTableScreen(View view) {
+        Intent intent = new Intent(MainMenu.this, PurchasedComponentTableView.class);
         startActivity(intent);
     }
 }

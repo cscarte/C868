@@ -31,10 +31,23 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="160dp"
             android:onClick="enterAssemblyTableScreen"
-            android:text="Assembly Inventory"
+            android:text="Table - Assembly Inventory"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainMenuTransactInventory" />
+
+        <Button
+            android:id="@+id/mainMenuPurchasedComponentInventoryOnHand"
+            android:layout_width="205dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="160dp"
+            android:onClick="enterPurchasedComponentTableScreen"
+            android:text="Table - Purchased Component Inventory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainMenuAssemblyInventoryOnHand" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/menuToolbar"
@@ -54,7 +67,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="150dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="150dp"
             android:background="#000000"
             android:src="@drawable/baseline_cable_24"
