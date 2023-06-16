@@ -1,6 +1,7 @@
 package com.example.C868.UI;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,6 @@ import com.example.c868.R;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     EditText usernameEditText;
     EditText passwordEditText;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     AssemblyParts assemblyParts;
 
-    String username;
+    static String username;
     String password;
     Button loginButton;
     Button loginBuyerButton;
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     LoginBuyer loginBuyer = new LoginBuyer(null, null, false);
 
     LoginUser loginUser = new LoginUser(null, null, false);
+
 
     @SuppressLint({"ResourceType", "MissingInflatedId"})
     @Override
@@ -64,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 loginUser = new LoginUser(usernameEditText.getText().toString(), passwordEditText.getText().toString(), false);
                 loginUser.loginUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
                 if(loginUser.isValidUserPasswordCombo() == true){
+                    username = usernameEditText.getText().toString();
                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                    intent.putExtra("username", username);
                     startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
@@ -79,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 loginBuyer = new LoginBuyer(usernameEditText.getText().toString(), passwordEditText.getText().toString(), false);
                 loginBuyer.loginUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
                 if(loginBuyer.isValidUserPasswordCombo() == true){
+                    username = usernameEditText.getText().toString();
                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                    intent.putExtra("username", username);
                     startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();

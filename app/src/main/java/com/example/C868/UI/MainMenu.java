@@ -3,6 +3,7 @@ package com.example.C868.UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.C868.Database.Repository;
 import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
+import com.example.C868.Logins.LoginUser;
 import com.example.c868.R;
 
 import java.util.List;
@@ -22,6 +24,9 @@ public class MainMenu extends AppCompatActivity {
 
     AssemblyParts assemblyParts;
 
+    LoginUser loginUser;
+    String loginUserName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,10 @@ public class MainMenu extends AppCompatActivity {
         Repository repository = new Repository(getApplication());
         assemblyPartsList = repository.getmAllAssemblyParts();
         purchasedComponentsList = repository.getmAllPurchasedComponents();
+
+        //loginUserName = getIntent().getStringExtra("loginUserName");
+        System.out.println("User logged in: " + MainActivity.username);
+        loginUserName = MainActivity.username;
 
         if (assemblyPartsList.size() < 1) {
             assemblyParts = new AssemblyParts(1, "Assembly Part 1", "Assembly Part 1 Description", 1, "Assembly Part 1 Location", false, "Assembly Line 1");
@@ -66,13 +75,25 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void enterAssemblyPartsScreen(View view) {
-        Intent intent = new Intent(MainMenu.this, AssemblyPartsList.class);
-        startActivity(intent);
+        //loginUserName = getIntent().getStringExtra("loginUser");
+        if (loginUserName.equals("buyer")) {
+            Intent intent = new Intent(MainMenu.this, AssemblyPartsList.class);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "You do not have permission to view this screen.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void enterPurchasedComponentsScreen(View view) {
-        Intent intent = new Intent(MainMenu.this, PurchasedComponentList.class);
-        startActivity(intent);
+        //loginUserName = getIntent().getStringExtra("loginUser");
+        if (loginUserName.equals("buyer")) {
+            Intent intent = new Intent(MainMenu.this, PurchasedComponentList.class);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "You do not have permission to view this screen.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void enterAssemblyTableScreen(View view) {
