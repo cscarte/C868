@@ -177,6 +177,12 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
                 selectedAssemblyResource = null;
             }
 
+            if (name.trim().isEmpty() || description.trim().isEmpty()) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Please fill out the following fields: name and description", Toast.LENGTH_SHORT);
+                toast.show();
+                return false;
+            }
+
             if (partID == 0) {
                 AssemblyParts assemblyParts = new AssemblyParts(0, name, description, quantity, location, partPurchasedStatus, selectedAssemblyResource);
                 Repository repository = new Repository(getApplication());

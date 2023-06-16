@@ -195,6 +195,11 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
 
             assemblyPartsSelected = (AssemblyParts) spinnerAssemblyName.getSelectedItem();
 
+            if (name.trim().isEmpty() || description.trim().isEmpty() || vendor.trim().isEmpty()) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Please fill out the following fields: name, description, and vendor", Toast.LENGTH_SHORT);
+                toast.show();
+                return false;
+            }
 
             if (quantity > 50000) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Quantity cannot be greater than 50,000", Toast.LENGTH_SHORT);

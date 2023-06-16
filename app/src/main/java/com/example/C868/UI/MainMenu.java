@@ -42,33 +42,37 @@ public class MainMenu extends AppCompatActivity {
         System.out.println("User logged in: " + MainActivity.username);
         loginUserName = MainActivity.username;
 
-        if (assemblyPartsList.size() < 1) {
-            assemblyParts = new AssemblyParts(1, "Assembly Part 1", "Assembly Part 1 Description", 1, "Assembly Part 1 Location", false, "Assembly Line 1");
-            repository.insert(assemblyParts);
-            assemblyParts = new AssemblyParts(2, "Assembly Part 2", "Assembly Part 2 Description", 1, "Assembly Part 2 Location", false, "Assembly Line 1");
-            repository.insert(assemblyParts);
-            assemblyParts = new AssemblyParts(3, "Assembly Part 3", "Assembly Part 3 Description", 1, "Assembly Part 3 Location", false, "Assembly Line 2");
-            repository.insert(assemblyParts);
-        }
+        //Used for testing with sample data
+        /**
+         if (assemblyPartsList.size() < 1) {
+         assemblyParts = new AssemblyParts(1, "Assembly Part 1", "Assembly Part 1 Description", 1, "Assembly Part 1 Location", false, "Assembly Line 1");
+         repository.insert(assemblyParts);
+         assemblyParts = new AssemblyParts(2, "Assembly Part 2", "Assembly Part 2 Description", 1, "Assembly Part 2 Location", false, "Assembly Line 1");
+         repository.insert(assemblyParts);
+         assemblyParts = new AssemblyParts(3, "Assembly Part 3", "Assembly Part 3 Description", 1, "Assembly Part 3 Location", false, "Assembly Line 2");
+         repository.insert(assemblyParts);
+         }
 
-        if (purchasedComponentsList.size() < 1) {
-            purchasedComponents = new PurchasedComponents(1, "Purchased Component 1", "Purchased Component 1 Description", 1, "Purchased Component 1 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-            purchasedComponents = new PurchasedComponents(2, "Purchased Component 2", "Purchased Component 2 Description", 1, "Purchased Component 2 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-            purchasedComponents = new PurchasedComponents(3, "Purchased Component 3", "Purchased Component 3 Description", 1, "Purchased Component 3 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-            purchasedComponents = new PurchasedComponents(4, "Purchased Component 4", "Purchased Component 4 Description", 1, "Purchased Component 4 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-            purchasedComponents = new PurchasedComponents(5, "Purchased Component 5", "Purchased Component 5 Description", 1, "Purchased Component 5 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-            purchasedComponents = new PurchasedComponents(6, "Purchased Component 6", "Purchased Component 6 Description", 1, "Purchased Component 6 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-            purchasedComponents = new PurchasedComponents(7, "Purchased Component 7", "Purchased Component 7 Description", 1, "Purchased Component 7 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-            purchasedComponents = new PurchasedComponents(8, "Purchased Component 8", "Purchased Component 8 Description", 1, "Purchased Component 8 Location", true, "Walmart", 1, 1);
-            repository.insert(purchasedComponents);
-        }
+         /**
+         if (purchasedComponentsList.size() < 1) {
+         purchasedComponents = new PurchasedComponents(1, "Purchased Component 1", "Purchased Component 1 Description", 1, "Purchased Component 1 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         purchasedComponents = new PurchasedComponents(2, "Purchased Component 2", "Purchased Component 2 Description", 1, "Purchased Component 2 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         purchasedComponents = new PurchasedComponents(3, "Purchased Component 3", "Purchased Component 3 Description", 1, "Purchased Component 3 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         purchasedComponents = new PurchasedComponents(4, "Purchased Component 4", "Purchased Component 4 Description", 1, "Purchased Component 4 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         purchasedComponents = new PurchasedComponents(5, "Purchased Component 5", "Purchased Component 5 Description", 1, "Purchased Component 5 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         purchasedComponents = new PurchasedComponents(6, "Purchased Component 6", "Purchased Component 6 Description", 1, "Purchased Component 6 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         purchasedComponents = new PurchasedComponents(7, "Purchased Component 7", "Purchased Component 7 Description", 1, "Purchased Component 7 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         purchasedComponents = new PurchasedComponents(8, "Purchased Component 8", "Purchased Component 8 Description", 1, "Purchased Component 8 Location", true, "Walmart", 1, 1);
+         repository.insert(purchasedComponents);
+         }
+         */
 
         System.out.println("There are " + assemblyPartsList.size() + " assembly parts.");
         System.out.println("There are " + purchasedComponentsList.size() + " purchased components.");
