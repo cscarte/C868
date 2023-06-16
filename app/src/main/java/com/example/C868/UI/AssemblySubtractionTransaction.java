@@ -18,10 +18,9 @@ import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class AssemblyTransactions extends AppCompatActivity {
+public class AssemblySubtractionTransaction extends AppCompatActivity {
 
     Repository repository = new Repository(getApplication());
     TextView assemblyNameTransaction;
@@ -34,11 +33,11 @@ public class AssemblyTransactions extends AppCompatActivity {
     List<AssemblyParts> assemblyPartsList = repository.getmAllAssemblyParts();
     List<PurchasedComponents> purchasedComponentsList = repository.getmAllPurchasedComponents();
     List<PurchasedComponents> purchasedComponentsInAssembly = repository.getmAllPurchasedComponents();
-    List<Integer> purchasedComponentQuantities2;
+
     List<Integer> purchasedComponentQuantities;
 
     AssemblyParts assemblyParts;
-    PurchasedComponents purchasedComponents;
+
 
     Spinner assemblySpinner;
     int spinnerDefaultPosition = 0;
@@ -48,7 +47,7 @@ public class AssemblyTransactions extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assembly_transactions);
+        setContentView(R.layout.activity_assembly_transactions_subtraction);
 
         assemblyNameTransaction = findViewById(R.id.assemblyTransactionNameTextView);
         assemblyQtyOnHand = findViewById(R.id.assemblyTransactionQtyOnHandTextView);
@@ -83,63 +82,6 @@ public class AssemblyTransactions extends AppCompatActivity {
         });
     }
 
-    public void addAssemblyTransaction(View view) {
-        if (!qtyOnHand.getText().toString().isEmpty()) {
-            qty = Integer.parseInt(qtyOnHand.getText().toString());
-        } else {
-            qty = 0;
-        }
-
-        if (!qtyAdjustment.getText().toString().isEmpty()) {
-            adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
-        } else {
-            adjustmentQty = 0;
-        }
-
-        if (adjustmentQty <= 0) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a positive number.", Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-
-            purchasedComponentsList = repository.getmAllPurchasedComponents();
-            purchasedComponentQuantities = new ArrayList<>();
-
-            for (PurchasedComponents purchasedComponents1 : purchasedComponentsList) {
-                if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
-                    purchasedComponentQuantities.add(purchasedComponents1.getPartQty());
-                    purchasedComponentsInAssembly.add(purchasedComponents1);
-                }
-            }
-
-            System.out.println(purchasedComponentsInAssembly);
-
-            if (!purchasedComponentQuantities.isEmpty()) {
-                if (Collections.min(purchasedComponentQuantities) >= adjustmentQty) {
-                    for (PurchasedComponents purchasedComponents1 : purchasedComponentsInAssembly) {
-                        if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
-                            purchasedComponents1.setPartQty(purchasedComponents1.getPartQty() - adjustmentQty);
-                            repository.update(purchasedComponents1);
-                        }
-                    }
-                    assemblyParts.setPartQty(qty + adjustmentQty);
-                    repository.update(assemblyParts);
-                    qtyOnHand.setText(String.valueOf(assemblyParts.getPartQty()));
-                    Toast toast1 = Toast.makeText(getApplicationContext(), "Assembly transaction added.", Toast.LENGTH_SHORT);
-                    toast1.show();
-                    purchasedComponentsInAssembly.clear();
-                    purchasedComponentQuantities.clear();
-                    onBackPressed();
-                } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Insufficient components to make assembly", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "Please create an assembly to transact", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-    }
-
     public void subtractAssemblyTransaction(View view) {
         if (!qtyOnHand.getText().toString().isEmpty()) {
             qty = Integer.parseInt(qtyOnHand.getText().toString());
@@ -154,7 +96,6 @@ public class AssemblyTransactions extends AppCompatActivity {
         }
 
         purchasedComponentsList = repository.getmAllPurchasedComponents();
-        purchasedComponentQuantities = new ArrayList<>();
 
         if (adjustmentQty <= 0) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please enter a positive number.", Toast.LENGTH_SHORT);
@@ -163,14 +104,6 @@ public class AssemblyTransactions extends AppCompatActivity {
 
             if (qty > 0) {
                 for (PurchasedComponents purchasedComponents1 : purchasedComponentsList) {
-                    if (purchasedComponents1.getPartID() == assemblyParts.getPartID()) {
-                        purchasedComponentQuantities.add(purchasedComponents1.getPartQty());
-                        purchasedComponentsInAssembly.add(purchasedComponents1);
-                    }
-                }
-
-
-                for (PurchasedComponents purchasedComponents1 : purchasedComponentsInAssembly) {
                     if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
                         purchasedComponents1.setPartQty(purchasedComponents1.getPartQty() + adjustmentQty);
                         repository.update(purchasedComponents1);
@@ -183,8 +116,6 @@ public class AssemblyTransactions extends AppCompatActivity {
                 Toast toast1 = Toast.makeText(getApplicationContext(), "Assembly subtracted, components returned to stock.", Toast.LENGTH_SHORT);
                 toast1.show();
                 purchasedComponentsInAssembly.clear();
-                purchasedComponentQuantities.clear();
-                onBackPressed();
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Assembly does not exist or qty is less than 0", Toast.LENGTH_SHORT);
                 toast.show();
@@ -192,4 +123,3 @@ public class AssemblyTransactions extends AppCompatActivity {
         }
     }
 }
-

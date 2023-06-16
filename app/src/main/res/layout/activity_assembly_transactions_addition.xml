@@ -53,26 +53,15 @@
         app:layout_constraintTop_toBottomOf="@+id/assemblyTransactionQtyOnHandTextView" />
 
     <Button
-        android:id="@+id/buttonSubtractAssembly"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="252dp"
-        android:onClick="subtractAssemblyTransaction"
-        android:text="Subtract Assembly"
-        app:layout_constraintStart_toEndOf="@+id/buttonAddAssembly"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarInventoryTransactions" />
-
-    <Button
         android:id="@+id/buttonAddAssembly"
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="44dp"
         android:onClick="addAssemblyTransaction"
         android:text="Add Assembly"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assemblyTransactionNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Spinner
         android:id="@+id/assemblyNameTransactionSpinner"

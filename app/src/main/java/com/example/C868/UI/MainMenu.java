@@ -80,13 +80,13 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void enterAssemblyTransactionScreen(View view) {
-        Intent intent = new Intent(MainMenu.this, AssemblyTransactions.class);
+    public void enterPurchasedComponentTableScreen(View view) {
+        Intent intent = new Intent(MainMenu.this, PurchasedComponentTableView.class);
         startActivity(intent);
     }
 
-    public void enterPurchasedComponentTableScreen(View view) {
-        Intent intent = new Intent(MainMenu.this, PurchasedComponentTableView.class);
+    public void enterAssemblyTransactionSelectionScreen(View view) {
+        Intent intent = new Intent(MainMenu.this, AssemblyTransactionSelectionMenu.class);
         startActivity(intent);
     }
 }

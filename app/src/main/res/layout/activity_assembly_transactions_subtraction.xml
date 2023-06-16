@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarInventoryTransactions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_dynamic_tertiary90"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewAssemblyParts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/assemblyTransactionNameTextView"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Assembly Selected:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInventoryTransactions" />
+
+    <TextView
+        android:id="@+id/assemblyTransactionQtyOnHandTextView"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Qty on hand:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assemblyTransactionNameTextView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Quantity to Adjust"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assemblyTransactionQtyOnHandTextView" />
+
+    <Button
+        android:id="@+id/buttonSubtractAssembly"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:onClick="subtractAssemblyTransaction"
+        android:text="Subtract Assembly"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Spinner
+        android:id="@+id/assemblyNameTransactionSpinner"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/assemblyTransactionNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInventoryTransactions" />
+
+    <TextView
+        android:id="@+id/assemblyQtyOnHandTextView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/assemblyTransactionQtyOnHandTextView"
+        app:layout_constraintTop_toBottomOf="@+id/assemblyNameTransactionSpinner" />
+
+    <EditText
+        android:id="@+id/assemblyQtyToAdjustTextEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Quantity to adjust"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/assemblyQtyOnHandTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

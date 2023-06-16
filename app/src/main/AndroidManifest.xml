@@ -34,8 +34,11 @@
         <activity android:name="com.example.C868.UI.AssemblyPartsDetails"
             android:exported="true"/>
         <activity android:name="com.example.C868.UI.AssemblyTableView"></activity>
-        <activity android:name="com.example.C868.UI.AssemblyTransactions"></activity>
+        <activity android:name="com.example.C868.UI.AssemblyTransactionSelectionMenu"></activity>
+        <activity android:name="com.example.C868.UI.AssemblyAdditionTransaction"></activity>
+        <activity android:name="com.example.C868.UI.AssemblySubtractionTransaction"></activity>
         <activity android:name="com.example.C868.UI.PurchasedComponentTableView"></activity>
+
     </application>
 
 </manifest>
