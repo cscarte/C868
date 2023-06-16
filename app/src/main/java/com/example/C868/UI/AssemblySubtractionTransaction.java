@@ -102,7 +102,7 @@ public class AssemblySubtractionTransaction extends AppCompatActivity {
             toast.show();
         } else {
 
-            if (qty > 0) {
+            if (qty - adjustmentQty >= 0) {
                 for (PurchasedComponents purchasedComponents1 : purchasedComponentsList) {
                     if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
                         purchasedComponents1.setPartQty(purchasedComponents1.getPartQty() + adjustmentQty);
@@ -117,7 +117,7 @@ public class AssemblySubtractionTransaction extends AppCompatActivity {
                 toast1.show();
                 purchasedComponentsInAssembly.clear();
             } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "Assembly does not exist or qty is less than 0", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "Assembly does not exist or insufficient assemblies in stock to subtract", Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
