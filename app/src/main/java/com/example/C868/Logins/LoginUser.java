@@ -1,9 +1,9 @@
 package com.example.C868.Logins;
 
 public class LoginUser {
-    private String username;
-    private String password;
-    private boolean validUserPasswordCombo = false;
+    public String username;
+    public String password;
+    public boolean validUserPasswordCombo = false;
 
     public LoginUser(String username, String password, boolean validUserPasswordCombo) {
         this.username = username;
@@ -24,7 +24,7 @@ public class LoginUser {
     }
 
     public boolean loginUser(String username, String password) {
-        if (username.equals("test") && password.equals("test")) {
+        if (username.equals("user") && password.equals("user")) {
             validUserPasswordCombo = true;
         } else {
             validUserPasswordCombo = false;

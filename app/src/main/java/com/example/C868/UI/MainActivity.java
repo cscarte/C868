@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.C868.Database.Repository;
 import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
-import com.example.C868.Logins.LoginAdmin;
+import com.example.C868.Logins.LoginBuyer;
 import com.example.C868.Logins.LoginUser;
 import com.example.c868.R;
 
@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
     String username;
     String password;
     Button loginButton;
-    Button loginAdminButton;
+    Button loginBuyerButton;
 
 
-    LoginAdmin loginAdmin = new LoginAdmin(null, null, false);
+    LoginBuyer loginBuyer = new LoginBuyer(null, null, false);
 
     LoginUser loginUser = new LoginUser(null, null, false);
 
@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loginAdminButton = findViewById(R.id.loginAdminButton);
-        loginAdminButton.setOnClickListener(new View.OnClickListener() {
+        loginBuyerButton = findViewById(R.id.loginBuyerButton);
+        loginBuyerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginAdmin = new LoginAdmin(usernameEditText.getText().toString(), passwordEditText.getText().toString(), false);
-                loginAdmin.loginUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
-                if(loginAdmin.isValidUserPasswordCombo() == true){
+                loginBuyer = new LoginBuyer(usernameEditText.getText().toString(), passwordEditText.getText().toString(), false);
+                loginBuyer.loginUser(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                if(loginBuyer.isValidUserPasswordCombo() == true){
                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
                     startActivity(intent);
                 } else {
