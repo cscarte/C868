@@ -88,10 +88,14 @@ public class AssemblyAdditionTransaction extends AppCompatActivity {
             qty = 0;
         }
 
-        if (!qtyAdjustment.getText().toString().isEmpty()) {
-            adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
-        } else {
-            adjustmentQty = 0;
+        try {
+            if (!qtyAdjustment.getText().toString().isEmpty()) {
+                adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
+            } else {
+                adjustmentQty = 0;
+            }
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Please enter a valid number.");
         }
 
         if (adjustmentQty <= 0) {

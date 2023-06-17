@@ -57,7 +57,11 @@ public class AssemblySubtractionTransaction extends AppCompatActivity {
 
         final ArrayAdapter<AssemblyParts> assemblySpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, assemblyPartsList);
         assemblySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        assemblySpinner.setAdapter(assemblySpinnerAdapter);
+        try {
+            assemblySpinner.setAdapter(assemblySpinnerAdapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (assemblyPartsList.isEmpty()) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please add an assembly part before attempting to add a transaction.", Toast.LENGTH_SHORT);
@@ -87,6 +91,16 @@ public class AssemblySubtractionTransaction extends AppCompatActivity {
             qty = Integer.parseInt(qtyOnHand.getText().toString());
         } else {
             qty = 0;
+        }
+
+        try {
+            if (!qtyAdjustment.getText().toString().isEmpty()) {
+                adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
+            } else {
+                adjustmentQty = 0;
+            }
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
         }
 
         if (!qtyAdjustment.getText().toString().isEmpty()) {
