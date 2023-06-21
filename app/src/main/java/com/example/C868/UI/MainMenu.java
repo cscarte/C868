@@ -43,7 +43,7 @@ public class MainMenu extends AppCompatActivity {
         loginUserName = MainActivity.username;
 
         //Used for testing with sample data
-
+/**
          if (assemblyPartsList.size() < 1) {
          assemblyParts = new AssemblyParts(1, "Assembly Part 1", "Assembly Part 1 Description", 1, "Assembly Part 1 Location", false, "Assembly Line 1");
          repository.insert(assemblyParts);
@@ -72,7 +72,7 @@ public class MainMenu extends AppCompatActivity {
          purchasedComponents = new PurchasedComponents(8, "Purchased Component 8", "Purchased Component 8 Description", 1, "Purchased Component 8 Location", true, "Walmart", 1, 1);
          repository.insert(purchasedComponents);
          }
-
+*/
         System.out.println("There are " + assemblyPartsList.size() + " assembly parts.");
         System.out.println("There are " + purchasedComponentsList.size() + " purchased components.");
     }

@@ -84,7 +84,7 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
         //Get purchased component part location from clicked item in list on the PurchasedComponentList.java screen
         purchasedComponentSpinnerLocation = findViewById(R.id.spinnerPurchasedComponentLocation);
         location = getIntent().getStringExtra("partLocation");
-        final ArrayAdapter<CharSequence> spinnerAdapterLocation = ArrayAdapter.createFromResource(this, R.array.assembly_lines, android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> spinnerAdapterLocation = ArrayAdapter.createFromResource(this, R.array.warehouse, android.R.layout.simple_spinner_item);
         spinnerAdapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         purchasedComponentSpinnerLocation.setAdapter(spinnerAdapterLocation);
 
@@ -198,7 +198,7 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
             name = purchasedComponentName.getText().toString();
             description = purchasedComponentDescription.getText().toString();
             quantity = Integer.parseInt(purchasedComponentQuantity.getText().toString());
-            String productionShopLocation = purchasedComponentSpinnerLocation.getSelectedItem().toString();
+            location = purchasedComponentSpinnerLocation.getSelectedItem().toString();
             vendor = purchasedComponentVendor.getText().toString();
             leadTime = Integer.parseInt(purchasedComponentLeadTime.getText().toString());
 
@@ -210,6 +210,10 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
                 return false;
             }
 
+            if (location.equals("Select a warehouse")) {
+                location = null;
+            }
+
             if (quantity > 50000) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Quantity cannot be greater than 50,000", Toast.LENGTH_SHORT);
                 toast.show();
@@ -219,24 +223,24 @@ public class PurchasedComponentDetails extends AppCompatActivity implements Adap
             } else {
                 if (repository.getmAllAssemblyParts().size() == 0) {
                     if (purchasedComponentID == 0) {
-                        purchasedComponents = new PurchasedComponents(0, name, description, quantity, productionShopLocation, true, vendor, leadTime, assemblyID = 0);
+                        purchasedComponents = new PurchasedComponents(0, name, description, quantity, location, true, vendor, leadTime, assemblyID = 0);
                         repository.insert(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
-                        purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, productionShopLocation, true, vendor, leadTime, assemblyID = 0);
+                        purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, location, true, vendor, leadTime, assemblyID = 0);
                         repository.update(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();
                     }
                 } else {
                     if (purchasedComponentID == 0) {
-                        purchasedComponents = new PurchasedComponents(0, name, description, quantity, productionShopLocation, true, vendor, leadTime, assemblyID);
+                        purchasedComponents = new PurchasedComponents(0, name, description, quantity, location, true, vendor, leadTime, assemblyID);
                         repository.insert(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
-                        purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, productionShopLocation, true, vendor, leadTime, assemblyID);
+                        purchasedComponents = new PurchasedComponents(purchasedComponentID, name, description, quantity, location, true, vendor, leadTime, assemblyID);
                         repository.update(purchasedComponents);
                         Toast toast = Toast.makeText(getApplicationContext(), purchasedComponentName.getText().toString() + " saved", Toast.LENGTH_SHORT);
                         toast.show();

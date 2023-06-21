@@ -105,7 +105,6 @@ public class AssemblyAdditionTransaction extends AppCompatActivity {
 
             purchasedComponentsList = repository.getmAllPurchasedComponents();
             purchasedComponentQuantities = new ArrayList<>();
-
             for (PurchasedComponents purchasedComponents1 : purchasedComponentsList) {
                 if (purchasedComponents1.getPurchasedPartAssemblyID() == assemblyParts.getPartID()) {
                     purchasedComponentQuantities.add(purchasedComponents1.getPartQty());

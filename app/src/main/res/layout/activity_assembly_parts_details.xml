@@ -60,19 +60,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAssemblyPartQty" />
 
-        <EditText
-            android:id="@+id/editTextViewAssemblyPartLocation"
-            android:layout_width="225dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="10dp"
-            android:ems="10"
-            android:gravity="center_vertical"
-            android:inputType="text"
-            android:text="Location"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartQuantity" />
-
         <TextView
             android:id="@+id/textViewAssemblyPartQty"
             android:layout_width="wrap_content"
@@ -166,7 +153,16 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerLocation" />
+
+        <Spinner
+            android:id="@+id/spinnerLocation"
+            android:layout_width="225dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextViewAssemblyPartQuantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

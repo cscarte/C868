@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">C868</string>
 
-    <string-array name="assembly_lines">
-        <item>Select an assembly resource</item>
+    <string-array name="warehouse">
+        <item>Select a warehouse</item>
         <item>Shelf 1</item>
         <item>Shelf 2</item>
         <item>Shelf 3</item>
+    </string-array>
+
+    <string-array name="assembly_lines">
+        <item>Select an assembly resource</item>
         <item>Assembly Line 1</item>
         <item>Assembly Line 2</item>
         <item>Assembly Line 3</item>

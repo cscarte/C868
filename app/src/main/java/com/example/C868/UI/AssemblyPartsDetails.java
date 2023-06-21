@@ -34,7 +34,7 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
     EditText assemblyPartName;
     EditText assemblyPartDescription;
     EditText assemblyPartQuantity;
-    EditText assemblyPartLocation;
+    Spinner assemblyPartLocation;
 
     RecyclerView recyclerViewAssemblyComponents;
 
@@ -74,6 +74,7 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
 
         Resources resources = getResources();
         String[] resourceNames = resources.getStringArray(R.array.assembly_lines);
+        String[] warehouse = resources.getStringArray(R.array.warehouse);
 
         purchasedPartsAdapter = new PurchasedPartsAdapterAssemblyDetails(this);
 
@@ -91,9 +92,11 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
         quantity = getIntent().getIntExtra("partQty", 0);
         assemblyPartQuantity.setText(String.valueOf(quantity));
 
-        assemblyPartLocation = findViewById(R.id.editTextViewAssemblyPartLocation);
+        assemblyPartLocation = findViewById(R.id.spinnerLocation);
         location = getIntent().getStringExtra("partLocation");
-        assemblyPartLocation.setText(location);
+        ArrayAdapter<CharSequence> locationAdapter = ArrayAdapter.createFromResource(this, R.array.warehouse, android.R.layout.simple_spinner_item);
+        locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        assemblyPartLocation.setAdapter(locationAdapter);
 
         recyclerViewAssemblyComponents.setAdapter(purchasedPartsAdapter);
         purchasedComponentsList = repository.getmAllPurchasedComponents();
@@ -169,12 +172,16 @@ public class AssemblyPartsDetails extends AppCompatActivity implements AdapterVi
             name = assemblyPartName.getText().toString();
             description = assemblyPartDescription.getText().toString();
             quantity = Integer.parseInt(assemblyPartQuantity.getText().toString());
-            location = assemblyPartLocation.getText().toString();
+            location = assemblyPartLocation.getSelectedItem().toString();
             partPurchasedStatus = getIntent().getBooleanExtra("partPurchasedStatus", false);
             String selectedAssemblyResource = spinnerAssemblyResource.getSelectedItem().toString();
 
             if (selectedAssemblyResource.equals("Select an assembly resource")){
                 selectedAssemblyResource = null;
+            }
+
+            if (location.equals("Select a warehouse")) {
+                location = null;
             }
 
             if (name.trim().isEmpty() || description.trim().isEmpty()) {

@@ -17,7 +17,6 @@ import com.example.C868.Entity.AssemblyParts;
 import com.example.C868.Entity.PurchasedComponents;
 import com.example.c868.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AssemblySubtractionTransaction extends AppCompatActivity {
@@ -33,8 +32,6 @@ public class AssemblySubtractionTransaction extends AppCompatActivity {
     List<AssemblyParts> assemblyPartsList = repository.getmAllAssemblyParts();
     List<PurchasedComponents> purchasedComponentsList = repository.getmAllPurchasedComponents();
     List<PurchasedComponents> purchasedComponentsInAssembly = repository.getmAllPurchasedComponents();
-
-    List<Integer> purchasedComponentQuantities;
 
     AssemblyParts assemblyParts;
 
@@ -104,7 +101,7 @@ public class AssemblySubtractionTransaction extends AppCompatActivity {
         }
 
         if (!qtyAdjustment.getText().toString().isEmpty()) {
-            adjustmentQty = Integer.parseInt(qtyAdjustment.getText().toString());
+            adjustmentQty = Integer.parseInt(qtyAdjustment.getText().   toString());
         } else {
             adjustmentQty = 0;
         }
